@@ -1,4 +1,4 @@
-import { SIGN_IN_PATH, SIGN_UP_PATH } from "../api";
+import { SIGN_IN_PATH, SIGN_UP_PATH } from "../myAxios/paths";
 
 interface ErrorHandler {
   [key: string]: {
