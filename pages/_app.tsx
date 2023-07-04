@@ -3,6 +3,7 @@ import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { ReduxProvicer } from "../redux/provider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -30,11 +31,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <title>Islamic Hub</title>
       </Head>
-      <div className="bg-primary-orange-light">
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
-      </div>
+      <ReduxProvicer>
+        <div className="bg-primary-orange-light">
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
+      </ReduxProvicer>
     </>
   );
 }
