@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";
+"use client";
 
 const LoginPage = () => {
   return (
@@ -8,4 +8,4 @@ const LoginPage = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(LoginPage), { ssr: false });
+export default LoginPage;
