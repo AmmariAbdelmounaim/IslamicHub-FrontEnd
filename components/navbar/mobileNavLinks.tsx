@@ -61,7 +61,7 @@ const MobileNavLinks = () => {
           </RevealLR>
         </li>
         <Reveal>
-          <div className="flex flex-col items-center gap-[24px]">
+          <div className="flex flex-col items-center gap-[24px] h-[200px]">
             <BorderButton additionalStyle="px-[40px] py-[16px] w-[100%]">
               Log In
             </BorderButton>
