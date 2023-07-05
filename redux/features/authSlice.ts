@@ -1,44 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type InitialState = {
-  value: AuthState;
-};
+import { registerIslamicCenter } from "./authAction";
+import { User } from "../../types/types";
 
 type AuthState = {
-  isAuth: boolean;
-  username: string;
-  uid: string;
-  isModerator: boolean;
+  loading: boolean;
+  userInfo: User;
+  userToken: string | null;
+  error: string;
+  success: boolean;
 };
 
 const initialState = {
-  value: {
-    isAuth: false,
-    username: "",
-    uid: "",
-    isModerator: false,
-  } as AuthState,
-} as InitialState;
+  loading: false,
+  userInfo: {}, // for user object
+  userToken: "", // for storing the JWT
+  error: "",
+  success: false, // for monitoring the registration process.
+} as AuthState;
 
-export const auth = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    logOut: () => {
-      return initialState;
-    },
-    logIn: (state, action: PayloadAction<string>) => {
-      return {
-        value: {
-          isAuth: true,
-          username: action.payload,
-          uid: "sfjsalfjasl",
-          isModerator: false,
-        },
-      };
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(registerIslamicCenter.pending, (state: AuthState) => {
+      state.loading = true;
+      state.error = "";
+    }),
+      builder.addCase(registerIslamicCenter.fulfilled, (state: AuthState) => {
+        state.loading = false;
+        state.success = true; // registration successful
+      }),
+      builder.addCase(
+        registerIslamicCenter.rejected,
+        (state: AuthState, { payload }) => {
+          state.loading = false;
+          state.error = payload as string;
+        }
+      );
   },
 });
 
-export const { logIn, logOut } = auth.actions;
-export default auth.reducer;
+export const {} = authSlice.actions;
+export default authSlice.reducer;

@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import { ReduxProvider } from "../redux/provider";
 
 export default function RootLayout({
   children,
@@ -30,7 +31,9 @@ export default function RootLayout({
 
         <title>Islamic Hub</title>
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning={true}>
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }
