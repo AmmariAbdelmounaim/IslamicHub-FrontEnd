@@ -1,3 +1,4 @@
+"use client";
 import SingleQuestion from "./question";
 import { useState } from "react";
 import data from "./data";
