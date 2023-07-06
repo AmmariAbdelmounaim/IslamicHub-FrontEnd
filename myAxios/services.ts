@@ -4,7 +4,7 @@ import { SIGN_IN_PATH, SIGN_OUT_PATH } from "./paths";
 
 // export const baseURL = import.meta.env.BASE_URL || "http://localhost:3500/";
 
-export const baseURL = "http://localhost:8085";
+export const baseURL = "http://localhost:8085/";
 
 const client = axios.create({
   baseURL,
