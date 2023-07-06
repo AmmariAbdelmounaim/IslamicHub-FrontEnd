@@ -31,6 +31,7 @@ export default {
           "dark-active": "#241009",
           darker: "#1C0C07",
         },
+        "color-placeholder": "#99795099",
         "primary-gray": {
           light: "#F5F4F3",
           "light-hover": "#F0EFED",
