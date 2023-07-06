@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import useFetch, { POST } from "../../hooks/useFetch";
 import { SIGN_UP_PATH } from "../../myAxios";
 import axios from "../../myAxios/services";
 
