@@ -1,18 +1,24 @@
 import Image from "next/image";
 
-const Logo = () => {
+const Logo = ({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}) => {
   return (
-    <div className="flex items-center">
-      <div className="w-[71px] h-[71px]">
-        <Image
-          className="w-full h-full"
-          src="IslamicHub.svg"
-          alt="Islamic Hub Logo"
-          width={71}
-          height={71}
-        />
-      </div>
-    </div>
+    <Image
+      priority={true}
+      src={src || "IslamicHub.svg"}
+      alt={alt || "Islamic Hub Logo"}
+      width={width || 71}
+      height={height || 71}
+    />
   );
 };
 export default Logo;

@@ -65,7 +65,7 @@ const MobileNavLinks = () => {
             <BorderButton additionalStyle="px-[40px] py-[16px] w-[100%]">
               Log In
             </BorderButton>
-            <FillButton additionalStye="px-[40px] py-[16px] w-[100%]">
+            <FillButton additionalStyle="px-[40px] py-[16px] w-[100%]">
               Sign Up
             </FillButton>
           </div>

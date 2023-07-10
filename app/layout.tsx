@@ -1,6 +1,6 @@
 import "tailwindcss/tailwind.css";
 import { ReduxProvider } from "../redux/provider";
-
+import backgroundImage from "../public/assets/backgroundImage.jpg";
 export default function RootLayout({
   children,
 }: {
