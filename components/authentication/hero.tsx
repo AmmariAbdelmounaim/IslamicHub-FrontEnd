@@ -1,4 +1,4 @@
-import Logo from "../../logo";
+import Logo from "../logo";
 export const AuthenticationHero = () => {
   return (
     <div className="flex flex-col items-center py-[48px] px-[120px] gap-[80px] justify-between ">

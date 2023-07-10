@@ -1,5 +1,5 @@
 import "tailwindcss/tailwind.css";
-import { AuthenticationHero } from "../../components/authentication/signUp/hero";
+import { AuthenticationHero } from "../../components/authentication/hero";
 
 export default function AuthenticationLayout({
   children,
