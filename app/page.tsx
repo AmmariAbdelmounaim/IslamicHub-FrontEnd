@@ -44,7 +44,7 @@ export default function LandingPage() {
                     Start with a warm greeting, Start with a warm greeting Start
                     with a warm greeting
                   </p>
-                  <FillButton additionalStye="capitalize py-[16px] px-[40px] w-[167px] h-[45px] flex items-center">
+                  <FillButton additionalStyle="capitalize py-[16px] px-[40px] w-[247px] h-[45px] flex items-center justify-center">
                     start now
                   </FillButton>
                 </div>
