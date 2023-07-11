@@ -8,7 +8,7 @@ export default function AuthenticationLayout({
 }) {
   return (
     <div className="sm:flex sm:h-screen sm:justify-between">
-      <div className="sm:px-[150px] sm:flex sm:flex-col  sm:justify-center ">
+      <div className="sm:px-[100px] sm:flex sm:flex-col  sm:justify-center ">
         {children}
       </div>
       <div className="flex ">
