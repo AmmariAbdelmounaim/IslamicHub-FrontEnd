@@ -9,12 +9,12 @@ import {
 } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import FillButton from "../../button/FillButton";
 
 interface FormValues {
-  islamicCenterName: string;
+  email: string;
   password: string;
 }
-
 export const LoginForm = () => {
   // Async submit function
   const onSubmit = async (
@@ -27,17 +27,18 @@ export const LoginForm = () => {
 
   // Validation schema
   const validationSchema = Yup.object({
-    islamicCenterName: Yup.string().required("Islamic Center name is required"),
+    email: Yup.string().required("Email is required"),
+    password: Yup.string().required("Password is required"),
   });
 
-  //custom field
+  // Custom field
   const CustomField: React.FC<{
     name: string;
     label: string;
     placeholder: string;
     type?: string;
   }> = ({ name, label, placeholder, type }) => {
-    const { errors, touched } = useFormikContext<FormValues>(); // access formik context
+    const { errors, touched } = useFormikContext<FormValues>(); // Access formik context
     const hasError = Boolean(
       touched[name as keyof FormValues] && errors[name as keyof FormValues]
     );
@@ -57,13 +58,19 @@ export const LoginForm = () => {
           type={type || "text"}
           name={name}
           placeholder={placeholder}
+          style={{
+            display: "flex",
+            height: "40px",
+            padding: "14px 10px 15px 10px",
+            
+          }}
           className={`
-          w-full flex h-[40px] pl-[16px] items-center rounded-lg 
+          flex h-[40px] pl-[10px] w-full rounded-lg 
           font-poppins text-[16px] font-medium placeholder:text-color-placeholder
           ${
             hasError
               ? "border-2 border-red-600"
-              : "border-2 border-secondary-brown-normal placeholder:capitalize"
+              : "border-2 border-secondary-brown-normal "
           }
         `}
         />
@@ -77,30 +84,71 @@ export const LoginForm = () => {
       {(msg) => <div style={{ color: "red" }}>{msg}</div>}
     </FormikErrorMessage>
   );
+
   const initialValues: FormValues = {
-    islamicCenterName: "",
+    email: "",
     password: "",
   };
-  return (
-    <div>
-      {/* Logo */}
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          {/* 2 input filed for islamic center name and password */}
-          <CustomField
-            name="islamicCenterName"
-            label="islamic center name"
-            placeholder="Enter your islamic center name "
-          />
-        </Form>
-      </Formik>
 
-      {/* sign in button */}
-      {/* you have an account -> sign up  <Link/>*/}
+  return (
+    <div className="flex flex-col gap-[64px]">
+      {/* Premiere div */}
+      <div className="flex flex-col gap-[16px]">
+        {/* Header */}
+        <h1 className="text-[28px] font-sourceSerif font-semibold">
+          Welcome Back!
+        </h1>
+
+        {/* Quote */}
+        <p className="font-poppins text-[18px] font-normal text-secondary-brown-normal">
+          Quote
+        </p>
+      </div>
+
+        {/* Form */}
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          <Form 
+          className="flex flex-col gap-[64px]"
+          >
+            {/* Troisieme div */}
+            <div className="flex flex-col gap-[24px]">
+              {/* 2 input fields for email and password */}
+              <CustomField
+                name="email"
+                label="Email"
+                placeholder="example@gmail.Com"
+              />
+              <CustomField
+                name="password"
+                label="Password"
+                placeholder="Enter your password"
+                type="password"
+              />
+            </div>
+
+            {/* Quatrieme div */}
+            <div className="flex flex-col gap-[24px] justify-center">
+              {/* Sign in button */}
+              <FillButton
+                type="submit"
+                additionalStyle="w-[195px] h-[45px] flex items-center justify-center"
+              >
+                Sign In
+              </FillButton>
+
+              {/* You have an account -> sign up <Link/> */}
+              <p className="font-poppins text-16 font-medium items-center">
+                Don't have an account?{" "}
+                <Link href="/authentication/signup" className="text-primary-orange-normal">Sign Up</Link>
+              </p>
+            </div>
+
+          </Form>
+        </Formik>
     </div>
   );
 };
