@@ -22,6 +22,7 @@ const IndexPage = () => {
     <div className="container mx-auto mt-8">
       <div className="flex justify-center">
         <Logo></Logo>
+        
       </div>
       <header className="text-center">
         <h1 className="text-2xl font-sourceSerif">Join IslamicHub</h1>
@@ -55,7 +56,7 @@ const IndexPage = () => {
       </div>
 
       <div className="mt-8 flex justify-center">
-        <FillButton onClick={handleContinue} additionalStye=" py-2 px-4">
+        <FillButton type="submit" additionalStyle=" py-2 px-4">
           Continue
         </FillButton>
       </div>
