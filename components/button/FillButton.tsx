@@ -1,16 +1,27 @@
 import React from "react";
 
-interface ButtonWithBorderProps extends React.HTMLProps<HTMLButtonElement> {
+interface FillButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
-  additionalStyle: string;
+  additionalStyle?: string;
 }
 
-const FillButton: React.FC<ButtonWithBorderProps> = ({
-  additionalStyle,
+const FillButton: React.FC<FillButtonProps> = ({
+  additionalStyle = "",
   children,
+  ...props
 }) => {
-  const className = `rounded-full py-[16px] px-[56px]  bg-primary-orange-normal capitalize bg-primary-orange-normal font-poppins text-[18px] text text-primary-orange-light leading-none ${additionalStyle} hover:bg-primary-orange-normal-hover`;
-  return <button className={className}>{children}</button>;
+  const baseStyle =
+    "rounded-full py-[16px] px-[56px] capitalize font-poppins text-[18px] leading-none";
+  const colorStyle =
+    "bg-primary-orange-normal text-primary-orange-light hover:bg-primary-orange-normal-hover";
+  const className = `${baseStyle} ${colorStyle} ${additionalStyle}`;
+
+  return (
+    <button className={className} {...props}>
+      {children}
+    </button>
+  );
 };
 
 export default FillButton;
