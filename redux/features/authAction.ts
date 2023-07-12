@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SIGN_UP_PATH } from "../../myAxios";
 import axios from "../../myAxios/services";
+import { User } from "../../types/types";
 
 export const registerIslamicCenter = createAsyncThunk(
   "auth/register",
@@ -11,14 +12,7 @@ export const registerIslamicCenter = createAsyncThunk(
     country,
     address,
     phoneNumber,
-  }: {
-    islamicCenterName: string;
-    email: string;
-    password: string;
-    country: string;
-    address: string;
-    phoneNumber: string;
-  }) => {
+  }: User) => {
     try {
       const response = await axios.post(SIGN_UP_PATH, {
         firstname: islamicCenterName,
@@ -31,11 +25,8 @@ export const registerIslamicCenter = createAsyncThunk(
       });
 
       return response;
-
-      // Further logic or dispatch actions upon successful registration
     } catch (error) {
       console.log("error");
-      // Handle any error occurred during registration
     }
   }
 );
