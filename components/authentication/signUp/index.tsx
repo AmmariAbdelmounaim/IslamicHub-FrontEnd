@@ -5,10 +5,12 @@ import {
   Field,
   Form,
   ErrorMessage as FormikErrorMessage,
-  FormikHelpers,
   useFormikContext,
-  FieldProps,
 } from "formik";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRegisterMutation } from "../../../redux/features/usersApiSlice";
+import { setCredentials } from "../../../redux/features/authSlice";
 import * as Yup from "yup";
 import FillButton from "../../button/FillButton";
 import countries from "i18n-iso-countries";
@@ -17,6 +19,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { getCountries, getCountryCallingCode } from "libphonenumber-js";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 
 countries.registerLocale(enLocale);
 
@@ -28,15 +31,6 @@ interface FormValues {
   address: string;
   phoneNumber: string;
 }
-
-// Async submit function
-const onSubmit = async (
-  values: FormValues,
-  { setSubmitting }: FormikHelpers<FormValues>
-) => {
-  console.log(values);
-  setSubmitting(false);
-};
 
 // Validation schema
 const validationSchema = Yup.object({
@@ -81,9 +75,7 @@ const CustomField: React.FC<{
       >
         {label}
       </label>
-      <p className="text-red-600 font-medium">
-        <ErrorMessage name={name} />
-      </p>
+      <ErrorMessage name={name} />
       <Field
         type={type || "text"}
         name={name}
@@ -126,9 +118,7 @@ const CustomSelectField: React.FC<{ name: string; label: string }> = ({
       >
         {label}
       </label>
-      <p className="text-red-600 font-medium">
-        <ErrorMessage name={name} />
-      </p>
+      <ErrorMessage name={name} />
       <div className="relative">
         <Field
           as="select"
@@ -145,14 +135,14 @@ const CustomSelectField: React.FC<{ name: string; label: string }> = ({
         >
           <option value="">Select your country</option>
           {countryArr.map((country) => (
-            <option key={country.value} value={country.value}>
+            <option key={country.value} value={country.label}>
               {country.label}
             </option>
           ))}
         </Field>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
           <svg
-            className="fill-current h-4 w-4 fill-secondary-brown-normal"
+            className=" h-4 w-4 fill-secondary-brown-normal"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -167,7 +157,7 @@ const CustomSelectField: React.FC<{ name: string; label: string }> = ({
 // Custom Error Message
 const ErrorMessage: React.FC<{ name: string }> = ({ name }) => (
   <FormikErrorMessage name={name}>
-    {(msg) => <div style={{ color: "red" }}>{msg}</div>}
+    {(msg) => <p className="text-red-600 font-poppins font-medium">{msg}</p>}
   </FormikErrorMessage>
 );
 
@@ -191,9 +181,7 @@ const CustomPhoneInput: React.FC<{ name: string; label: string }> = ({
       >
         {label}
       </label>
-      <p className="text-red-600 font-medium">
-        <ErrorMessage name={name} />
-      </p>
+      <ErrorMessage name={name} />
       <PhoneInput
         international={false}
         placeholder="Enter Your Phone Number"
@@ -243,6 +231,16 @@ const SignUpForm: React.FC = () => {
     phoneNumber: "",
   };
 
+  //redux:
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const [register, { isLoading }] = useRegisterMutation();
+
+  useEffect(() => {
+    if (userInfo) {
+      console.log("there is already a user (:");
+    }
+  }, [userInfo]);
   return (
     <>
       <div className="flex flex-col gap-[16px]">
@@ -257,9 +255,32 @@ const SignUpForm: React.FC = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const res = await register({
+              firstname: values.islamicCenterName,
+              lastname: "",
+              email: values.email,
+              tele: values.phoneNumber,
+              ville: values.country,
+              adresse: values.address,
+              password: values.password,
+            }).unwrap();
+            dispatch(setCredentials({ ...res }));
+          } catch (err) {
+            console.log("error");
+          }
+        }}
       >
-        {() => (
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
           <Form>
             <div className="my-[40px] flex flex-col gap-[32px]">
               <CustomField
@@ -291,6 +312,7 @@ const SignUpForm: React.FC = () => {
             <div className="flex flex-col gap-[32px] justify-center items-center">
               <FillButton
                 type="submit"
+                disabled={isSubmitting}
                 additionalStyle="w-[195px] h-[45px] flex items-center justify-center "
               >
                 Sign Up
