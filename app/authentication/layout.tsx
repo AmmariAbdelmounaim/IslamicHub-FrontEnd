@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import { AuthenticationHero } from "../../components/authentication/hero";
+import { Metadata } from "next";
 
 export default function AuthenticationLayout({
   children,
