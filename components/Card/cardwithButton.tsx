@@ -23,7 +23,7 @@ const CardWithButton = ({ title, image, text, onSubmit }: CardProps) => {
         {text}
       </p>
       <FillButton
-        additionalStye="px-[54px] py-[13px] capitalize"
+        additionalStyle="px-[54px] py-[13px] capitalize"
         onSubmit={onSubmit}
       >
         start now
