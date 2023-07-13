@@ -1,6 +1,9 @@
+"use client";
 import "tailwindcss/tailwind.css";
 import { ReduxProvider } from "../redux/provider";
 import type { Metadata } from "next";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 export const metadata: Metadata = {
   title: "Islamic Hub",
@@ -34,8 +37,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body suppressHydrationWarning={true}>
-        <ReduxProvider>{children}</ReduxProvider>
+      <body suppressHydrationWarning={true} className="bg-primary-orange-light">
+        <ReduxProvider>
+          <Navbar />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );
