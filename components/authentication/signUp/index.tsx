@@ -8,7 +8,6 @@ import {
   useFormikContext,
 } from "formik";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useRegisterMutation } from "../../../redux/features/usersApiSlice";
 import { setCredentials } from "../../../redux/features/authSlice";
 import * as Yup from "yup";
