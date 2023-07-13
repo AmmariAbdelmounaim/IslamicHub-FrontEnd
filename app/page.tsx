@@ -25,7 +25,6 @@ export default function LandingPage() {
     <>
       {domLoaded && (
         <>
-          <Navbar />
           <div className=" bg-primary-orange-light">
             <Reveal>
               <div
