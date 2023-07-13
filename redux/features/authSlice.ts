@@ -1,13 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+"use client";
+import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../../types/types";
 
 type AuthState = {
-  userInfo: string | null;
+  userInfo: User | null;
 };
 
 const initialState = {
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo") as string)
-    : null,
+  userInfo:
+    typeof window !== "undefined" && window.localStorage.getItem("userInfo")
+      ? JSON.parse(window.localStorage.getItem("userInfo") as string)
+      : null,
 } as AuthState;
 
 export const authSlice = createSlice({
@@ -23,24 +26,6 @@ export const authSlice = createSlice({
       localStorage.removeItem("userInfo");
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(registerIslamicCenter.pending, (state: AuthState) => {
-  //     state.loading = true;
-  //     state.error = "";
-  //   }),
-  //     builder.addCase(registerIslamicCenter.fulfilled, (state: AuthState , action) => {
-  //       state.loading = false;
-  //       state.userInfo = action.payload ;
-  //       state.success = true; // registration successful
-  //     }),
-  //     builder.addCase(
-  //       registerIslamicCenter.rejected,
-  //       (state: AuthState, { payload }) => {
-  //         state.loading = false;
-  //         state.error = payload as string;
-  //       }
-  //     );
-  // },
 });
 
 export const { setCredentials, logout } = authSlice.actions;
