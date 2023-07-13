@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import MenuToggle from "./menuToggle";
 import Logo from "../logo";
@@ -6,9 +7,11 @@ import FillButton from "../button/FillButton";
 import { RevealLR } from "../animations/RevealLR";
 import { Reveal } from "../animations/Reveal";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const MobileNavLinks = () => {
   const [isOpen, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className={"h-full flex items-center relative"}>
@@ -62,10 +65,21 @@ const MobileNavLinks = () => {
         </li>
         <Reveal>
           <div className="flex flex-col items-center gap-[24px] h-[200px]">
-            <BorderButton additionalStyle="px-[40px] py-[16px] w-[100%]">
+            <BorderButton
+              additionalStyle="px-[40px] py-[16px] w-[100%]"
+              type="button"
+              onClick={() => {
+                router.push("/authentication/login");
+              }}
+            >
               Log In
             </BorderButton>
-            <FillButton additionalStyle="px-[40px] py-[16px] w-[100%]">
+            <FillButton
+              additionalStyle="px-[40px] py-[16px] w-[100%]"
+              onClick={() => {
+                router.push("/authentication/signup");
+              }}
+            >
               Sign Up
             </FillButton>
           </div>
