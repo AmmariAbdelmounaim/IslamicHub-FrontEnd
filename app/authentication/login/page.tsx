@@ -1,11 +1,9 @@
 "use client";
 
-
-import { LoginForm } from "../../../components/authentication/login";
-
+import { LoginForm } from "../../../components/authentication/logIn";
 
 const LoginPage = () => {
-  return  <LoginForm />
+  return <LoginForm />;
 };
 
 export default LoginPage;
