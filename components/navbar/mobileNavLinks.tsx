@@ -63,6 +63,16 @@ const MobileNavLinks = () => {
             </Link>
           </RevealLR>
         </li>
+        <li className="mb-[22px] pb-[22px] font-poppins capitalize leading-none text-[22px]  w-full text-center">
+          <RevealLR>
+            <Link
+              className="no-underline text-primary-orange-darker  transition-all hover:text-primary-orange-dark-hover"
+              href="/pricing"
+            >
+              Pricing
+            </Link>
+          </RevealLR>
+        </li>
         <Reveal>
           <div className="flex flex-col items-center gap-[24px] h-[200px]">
             <BorderButton
