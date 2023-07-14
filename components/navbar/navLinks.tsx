@@ -28,6 +28,14 @@ const NavLinks = () => {
             faq
           </Link>
         </li>
+        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px] ">
+          <Link
+            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            href="/pricing"
+          >
+            pricing
+          </Link>
+        </li>
       </ul>
     </div>
   );
