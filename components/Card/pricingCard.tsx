@@ -1,19 +1,35 @@
+import { Price } from "../../app/pricing/page";
 import FillButton from "../button/FillButton";
+import axios from "axios";
 
 interface PricingCardProps {
   title: string;
+  monthly: boolean;
   description: string;
   price: number;
   features: string[];
+  offer: Price;
 }
 const PricingCard = ({
   title,
   description,
   price,
   features,
+  offer,
 }: PricingCardProps) => {
+  const handleSubscription = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("test");
+    const { data } = await axios.post("/api/payment", offer, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    window.location.assign(data);
+  };
+
   return (
-    <div className="py-[48px] px-[24px] flex flex-col gap-[32px] w-[310px]  rounded-lg border border-primary-orange-light-active bg-secondary-brown-light shadow-[1px_4px_16px_0px_rgba(122,105,100,0.05)]  ">
+    <div className="py-[48px] px-[24px] flex flex-col gap-[32px] w-[310px] h-[465px] rounded-lg border border-primary-orange-light-active bg-secondary-brown-light shadow-[1px_4px_16px_0px_rgba(122,105,100,0.05)]  ">
       <h3 className="font-poppins text-[24px] text-center text-secondary-brown-darker font-medium capitalize">
         {title}
       </h3>
@@ -24,7 +40,11 @@ const PricingCard = ({
         ${price}
         <sub className="text-[16px]">/Month</sub>
       </h1>
-      <FillButton additionalStyle="px-[40px] py-[12px]" type="button">
+      <FillButton
+        additionalStyle="px-[40px] py-[12px]"
+        type="button"
+        onClick={handleSubscription}
+      >
         Purchase
       </FillButton>
 
