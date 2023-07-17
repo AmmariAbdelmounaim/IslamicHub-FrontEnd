@@ -4,6 +4,7 @@ import axios from "axios";
 import PricingCard from "../../components/Card/pricingCard";
 import Navbar from "../../components/navbar";
 import FillButton from "../../components/button/FillButton";
+import { Spinner } from "flowbite-react";
 
 interface Recurring {
   aggregate_usage: string | null;
@@ -68,7 +69,7 @@ export default function PricingPage() {
           Switch to {subscriptionType === "monthly" ? "Yearly" : "Monthly"}{" "}
           Subscription
         </FillButton>
-        <div>
+        <div className="flex flex-col sm:flex-row gap-[50px] justify-center items-center">
           {subscriptionType === "monthly" ? (
             <>
               {prices.length > 0 ? (
