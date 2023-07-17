@@ -1,13 +1,17 @@
+import Link from "next/link";
 import Logo from "../logo";
 export const AuthenticationHero = () => {
   return (
     <div className="flex flex-col items-center py-[48px] px-[120px] gap-[80px] justify-between ">
-      <Logo
-        src="/IslamicHub_logo_white.svg"
-        alt="islamic hub logo"
-        width={80}
-        height={80}
-      />
+      <Link href={"/"}>
+        <Logo
+          src="/IslamicHub_logo_white.svg"
+          alt="islamic hub logo"
+          width={80}
+          height={80}
+        />
+      </Link>
+
       <div className="flex flex-col gap-[64px]  max-w-[450px]">
         <h3 className="font-sourceSerif text-secondary-brown-light text-[28px] font-semibold capitalize ">
           Join us and create your customizable website today.
