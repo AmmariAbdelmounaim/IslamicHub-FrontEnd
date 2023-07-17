@@ -26,6 +26,7 @@ export default function LandingPage() {
       {domLoaded && (
         <>
           <div className=" bg-primary-orange-light">
+            <Navbar />
             <Reveal>
               <div
                 className={`flex ${
