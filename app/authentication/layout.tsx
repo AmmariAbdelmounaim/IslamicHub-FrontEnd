@@ -8,11 +8,11 @@ export default function AuthenticationLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="sm:flex sm:h-screen sm:justify-between">
-      <div className="sm:px-[100px] sm:flex sm:flex-col  sm:justify-center ">
+    <div className="flex sm:h-screen sm:justify-between items-center justify-center h-screen ">
+      <div className=" sm:px-[100px] sm:flex sm:flex-col  sm:justify-center ">
         {children}
       </div>
-      <div className="flex ">
+      <div className="hidden sm:flex sm:h-full">
         <div
           className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center h-full"
           style={{ backgroundImage: `url(/assets/backgroundImage.jpg)` }}
