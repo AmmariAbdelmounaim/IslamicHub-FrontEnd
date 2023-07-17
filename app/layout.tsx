@@ -2,8 +2,8 @@
 import "tailwindcss/tailwind.css";
 import { ReduxProvider } from "../redux/provider";
 import type { Metadata } from "next";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Islamic Hub",
@@ -39,6 +39,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning={true} className="bg-primary-orange-light">
         <ReduxProvider>
+          <ToastContainer />
           {/* <Navbar /> */}
           {children}
         </ReduxProvider>
