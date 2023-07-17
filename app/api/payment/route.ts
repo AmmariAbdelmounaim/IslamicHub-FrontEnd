@@ -27,8 +27,8 @@ export async function POST(request: Request) {
       },
     ],
     mode: "subscription",
-    success_url: "http://localhost:3001/succ",
-    cancel_url: "http://localhost:3001/echec",
+    success_url: "http://localhost:3000/welcome",
+    cancel_url: "http://localhost:3000/",
   });
 
   return NextResponse.json(session.url);
