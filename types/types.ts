@@ -1,5 +1,5 @@
 export interface User {
-  islamicCenterName: string;
+  firstname: string;
   email: string;
   password: string;
   country: string;
