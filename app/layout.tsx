@@ -39,7 +39,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning={true} className="bg-primary-orange-light">
         <ReduxProvider>
-          <ToastContainer />
+          <ToastContainer limit={1} />
           {/* <Navbar /> */}
           {children}
         </ReduxProvider>
