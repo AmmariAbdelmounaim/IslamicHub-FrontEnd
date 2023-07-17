@@ -8,6 +8,7 @@ import { setCredentials } from "../../../redux/features/authSlice";
 import { useRouter } from "next/navigation";
 import { CustomField } from "../../formInputs/customField";
 import { validationSchemaLoginForm } from "../validationSchema";
+import { toast } from "react-toastify";
 
 interface FormValues {
   email: string;
@@ -50,7 +51,18 @@ export const LoginForm = () => {
             console.log("login response", res);
             dispatch(setCredentials({ ...res }));
             router.push("/welcome");
-          } catch (err) {}
+          } catch (err) {
+            toast.error("Wrong email or password !", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         }}
       >
         {({}) => (

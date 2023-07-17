@@ -1,7 +1,6 @@
 "use client";
 
 import { Formik, Form } from "formik";
-import { useEffect } from "react";
 import { useRegisterMutation } from "../../../redux/features/usersApiSlice";
 import { setCredentials } from "../../../redux/features/authSlice";
 import FillButton from "../../button/FillButton";
@@ -13,6 +12,8 @@ import { CustomField } from "../../formInputs/customField";
 import { CustomSelectField } from "../../formInputs/customSelectField";
 import { CustomPhoneInput } from "../../formInputs/customPhoneInput";
 import { validationSchemaSignUpForm } from "../validationSchema";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface FormValues {
   islamicCenterName: string;
@@ -55,7 +56,6 @@ const SignUpForm: React.FC = () => {
         validationSchema={validationSchemaSignUpForm}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            console.log("bdinal");
             const res = await register({
               firstname: values.islamicCenterName,
               lastname: "test",
@@ -65,13 +65,19 @@ const SignUpForm: React.FC = () => {
               adresse: values.address,
               password: values.password,
             }).unwrap();
-            console.log("success");
-            console.log("signUP response", res);
             dispatch(setCredentials({ ...res }));
-            console.log("success");
-            // router.push("/verification");
+            router.push("/verification");
           } catch (err) {
-            console.log(err);
+            toast.error("Email already exists !", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         }}
       >
