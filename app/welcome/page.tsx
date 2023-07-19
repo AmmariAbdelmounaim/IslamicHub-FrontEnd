@@ -13,8 +13,12 @@ export default function WelcomePage() {
 
   const [islamicCenterName, setIslamicCenterName] = useState<string>("");
   useEffect(() => {
-    setIslamicCenterName(userInfo?.firstname as string);
-  }, [userInfo]);
+    if (userInfo?.firstname) {
+      setIslamicCenterName(userInfo?.firstname as string);
+    } else {
+      router.push("/authentication/login");
+    }
+  }, [router, userInfo]);
 
   const dispatch = useAppDispatch();
 
