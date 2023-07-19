@@ -50,8 +50,8 @@ export default {
         },
         "secondary-brown": {
           light: "#F5F2EE",
-          "light-hover": "#F0EBE5",
-          "light-active": "#DFD5C9",
+          "light-hover": "#F8ECE1",
+          "light-active": "#F0D7C2",
           normal: "#997950",
           "normal-hover": "#8A6D48",
           "normal-active": "#7A6140",
@@ -79,6 +79,7 @@ export default {
       },
       boxShadow: {
         "3xl": "0px 4px 10px 0px rgba(47, 21, 13, 0.10)",
+        "primary-brown": "1px 4px 16px 0px rgba(122, 105, 100, 0.05)",
       },
     },
   },
