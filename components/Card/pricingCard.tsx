@@ -1,7 +1,10 @@
+"use client";
+import { toast } from "react-toastify";
 import { Price } from "../../app/pricing/page";
+import { useAppSelector } from "../../redux/store";
 import FillButton from "../button/FillButton";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 interface PricingCardProps {
   title: string;
   monthly: boolean;
@@ -17,15 +20,32 @@ const PricingCard = ({
   features,
   offer,
 }: PricingCardProps) => {
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const router = useRouter();
+
   const handleSubscription = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("test");
-    const { data } = await axios.post("/api/payment", offer, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    window.location.assign(data);
+    if (userInfo?.firstname) {
+      e.preventDefault();
+      console.log("test");
+      const { data } = await axios.post("/api/payment", offer, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      window.location.assign(data);
+    } else {
+      router.push("/authentication/login");
+      toast.error("You need to Log In first !", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
