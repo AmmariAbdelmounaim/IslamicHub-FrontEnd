@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PricingCard from "../../components/Card/pricingCard";
 import Navbar from "../../components/navbar";
-import FillButton from "../../components/button/FillButton";
-import { Spinner } from "flowbite-react";
+import SliderButton from "../../components/button/SliderButton";
 
 interface Recurring {
   aggregate_usage: string | null;
@@ -62,13 +61,10 @@ export default function PricingPage() {
         <h1 className="font-sourceSerif text-[24px] text-center text-primary-brown-darker font-semibold capitalize sm:text-[28px] ">
           Choose a plan that is right for your center
         </h1>
-        <FillButton
-          onClick={toggleSubscriptionType}
-          additionalStyle="w-[400px] "
-        >
-          Switch to {subscriptionType === "monthly" ? "Yearly" : "Monthly"}{" "}
-          Subscription
-        </FillButton>
+        <SliderButton
+          subscriptionType={subscriptionType}
+          toggleSubscriptionType={toggleSubscriptionType}
+        />
         <div className="flex flex-col sm:flex-row gap-[50px] justify-center items-center">
           {subscriptionType === "monthly" ? (
             <>
