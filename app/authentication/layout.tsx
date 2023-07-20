@@ -1,12 +1,22 @@
+"use client";
 import "tailwindcss/tailwind.css";
 import { AuthenticationHero } from "../../components/authentication/hero";
 import { Metadata } from "next";
+import { useAppSelector } from "../../redux/store";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function AuthenticationLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const router = useRouter();
+
+  useEffect(() => {
+    userInfo && router.push("/cms");
+  }, [userInfo, router]);
   return (
     <div className="flex sm:h-screen sm:justify-between items-center justify-center h-screen ">
       <div className=" sm:px-[100px] sm:flex sm:flex-col  sm:justify-center ">
