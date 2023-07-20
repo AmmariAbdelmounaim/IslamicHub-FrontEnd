@@ -16,7 +16,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface FormValues {
-  islamicCenterName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
   country: string;
@@ -26,7 +27,8 @@ interface FormValues {
 
 const SignUpForm: React.FC = () => {
   const initialValues: FormValues = {
-    islamicCenterName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     country: "",
@@ -36,7 +38,6 @@ const SignUpForm: React.FC = () => {
 
   //redux:
   const dispatch = useAppDispatch();
-  const { userInfo } = useAppSelector((state) => state.auth);
   const [register, { isLoading }] = useRegisterMutation();
   const router = useRouter();
 
@@ -57,8 +58,8 @@ const SignUpForm: React.FC = () => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const res = await register({
-              firstname: values.islamicCenterName,
-              lastname: "test",
+              firstname: values.firstname,
+              lastname: values.lastname,
               email: values.email,
               tele: values.phoneNumber,
               ville: values.country,
@@ -85,9 +86,14 @@ const SignUpForm: React.FC = () => {
           <Form>
             <div className="my-[40px] flex flex-col gap-[32px]">
               <CustomField<FormValues>
-                name="islamicCenterName"
-                label="Islamic Center Name"
-                placeholder="The Islamic Center Name"
+                name="firstname"
+                label="First Name"
+                placeholder="Enter your first name"
+              />
+              <CustomField<FormValues>
+                name="lastname"
+                label="Last Name"
+                placeholder="Enter your last name"
               />
               <CustomField<FormValues>
                 type="email"
