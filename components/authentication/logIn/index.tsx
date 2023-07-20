@@ -50,7 +50,7 @@ export const LoginForm = () => {
             }).unwrap();
             console.log("login response", res);
             dispatch(setCredentials({ ...res }));
-            router.push("/welcome");
+            router.push("/cms");
           } catch (err) {
             toast.error("Wrong email or password !", {
               position: "top-right",
@@ -65,7 +65,7 @@ export const LoginForm = () => {
           }
         }}
       >
-        {({}) => (
+        {({ isSubmitting }) => (
           <Form>
             <div className="my-[40px] flex flex-col gap-[32px]">
               <CustomField<FormValues>
