@@ -31,12 +31,12 @@ export function CustomField<T>({
         name={name}
         placeholder={placeholder}
         className={`
-          w-full flex h-[40px] pl-[16px] items-center rounded-lg 
+          w-full flex h-[40px] pl-[16px] items-center rounded-lg min-w-[420px]
           font-poppins text-[16px] font-medium placeholder:text-color-placeholder bg-transparent
           ${
             hasError
               ? "border-2 border-red-600"
-              : "border-2 border-secondary-brown-normal placeholder:capitalize"
+              : "border-2 border-secondary-brown-normal "
           }
         `}
       />
