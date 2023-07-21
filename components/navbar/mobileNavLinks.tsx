@@ -8,6 +8,7 @@ import { RevealLR } from "../animations/RevealLR";
 import { Reveal } from "../animations/Reveal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import LangSwitcher from "../button/LangSwitcher";
 
 const MobileNavLinks = () => {
   const [isOpen, setOpen] = useState(false);
@@ -92,6 +93,7 @@ const MobileNavLinks = () => {
             >
               Sign Up
             </FillButton>
+            <LangSwitcher />
           </div>
         </Reveal>
       </ul>

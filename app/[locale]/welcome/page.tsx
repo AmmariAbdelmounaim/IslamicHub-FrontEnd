@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { useEffect, useState } from "react";
-import FillButton from "../../components/button/FillButton";
-import { logout } from "../../redux/features/authSlice";
+import FillButton from "../../../components/button/FillButton";
+import { logout } from "../../../redux/features/authSlice";
 import { useRouter } from "next/navigation";
 
 export default function WelcomePage() {

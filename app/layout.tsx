@@ -1,22 +1,16 @@
-"use client";
-import "tailwindcss/tailwind.css";
-import { ReduxProvider } from "../redux/provider";
-import type { Metadata } from "next";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
+import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "Islamic Hub",
+type Props = {
+  children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Since we have a `not-found.tsx` page on the root, a layout file
+// is required, even if it's just passing children through.
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
-      <head>
+    <html>
+      <Head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/png" href="/IslamicHub.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,14 +30,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Serif+4:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
         />
-      </head>
-      <body suppressHydrationWarning={true} className="bg-primary-orange-light">
-        <ReduxProvider>
-          <ToastContainer limit={1} />
-          {/* <Navbar /> */}
-          {children}
-        </ReduxProvider>
-      </body>
+      </Head>
+      <body>{children}</body>
     </html>
   );
 }

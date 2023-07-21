@@ -1,0 +1,12 @@
+{
+  "Index": {
+    "title": "Bonjour tout le monde!"
+  },
+  "SignIn": {
+    "password": "mot de passe"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, en {Anglais} fr {Français} other {Inconnue}}"
+  }
+}
