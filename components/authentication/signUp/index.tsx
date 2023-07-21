@@ -5,7 +5,7 @@ import { useRegisterMutation } from "../../../redux/features/usersApiSlice";
 import { setCredentials } from "../../../redux/features/authSlice";
 import FillButton from "../../button/FillButton";
 import "react-phone-number-input/style.css";
-import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { useAppDispatch } from "../../../redux/store";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { CustomField } from "../../formInputs/customField";
@@ -14,6 +14,7 @@ import { CustomPhoneInput } from "../../formInputs/customPhoneInput";
 import { validationSchemaSignUpForm } from "../validationSchema";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { cookies } from "next/headers";
 
 interface FormValues {
   firstname: string;
@@ -37,8 +38,6 @@ const SignUpForm: React.FC = () => {
   };
 
   //redux:
-  const dispatch = useAppDispatch();
-  const [register, { isLoading }] = useRegisterMutation();
   const router = useRouter();
 
   return (
@@ -57,16 +56,7 @@ const SignUpForm: React.FC = () => {
         validationSchema={validationSchemaSignUpForm}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const res = await register({
-              firstname: values.firstname,
-              lastname: values.lastname,
-              email: values.email,
-              tele: values.phoneNumber,
-              ville: values.country,
-              adresse: values.address,
-              password: values.password,
-            }).unwrap();
-            dispatch(setCredentials({ ...res }));
+            localStorage.setItem("formValues", JSON.stringify(values));
             router.push("/verification");
           } catch (err) {
             toast.error("Email already exists !", {
@@ -82,7 +72,7 @@ const SignUpForm: React.FC = () => {
           }
         }}
       >
-        {({ isSubmitting }) => (
+        {() => (
           <Form>
             <div className="my-[40px] flex flex-col gap-[32px]">
               <CustomField<FormValues>
@@ -119,7 +109,6 @@ const SignUpForm: React.FC = () => {
             <div className="flex flex-col gap-[32px] justify-center items-center">
               <FillButton
                 type="submit"
-                disabled={isSubmitting}
                 additionalStyle="w-[195px] h-[45px] flex items-center justify-center "
               >
                 Sign Up

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PricingCard from "../../components/Card/pricingCard";
-import Navbar from "../../components/navbar";
-import SliderButton from "../../components/button/SliderButton";
+import PricingCard from "../../../components/Card/pricingCard";
+import Navbar from "../../../components/navbar";
+import SliderButton from "../../../components/button/SliderButton";
 
 interface Recurring {
   aggregate_usage: string | null;

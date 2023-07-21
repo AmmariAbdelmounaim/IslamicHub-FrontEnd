@@ -1,3 +1,4 @@
+"use client";
 import { Formik, Form } from "formik";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { CustomField } from "../../formInputs/customField";
 import { validationSchemaLoginForm } from "../validationSchema";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 interface FormValues {
   email: string;
@@ -20,7 +22,7 @@ export const LoginForm = () => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
-
+  const t = useTranslations("SignIn");
   useEffect(() => {}, [userInfo]);
 
   const initialValues: FormValues = {
@@ -75,7 +77,7 @@ export const LoginForm = () => {
               />
               <CustomField<FormValues>
                 name="password"
-                label="Password"
+                label={t("password")}
                 placeholder="Enter your password"
                 type="password"
               />

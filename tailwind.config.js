@@ -74,8 +74,8 @@ export default {
         },
       },
       fontFamily: {
-        poppins: "'Poppins', sans-serif",
-        sourceSerif: "'Source Serif 4', serif",
+        poppins: ["var(--font-poppins)"],
+        sourceSerif: ["var(--font-sourceSerif)"],
       },
       boxShadow: {
         "3xl": "0px 4px 10px 0px rgba(47, 21, 13, 0.10)",

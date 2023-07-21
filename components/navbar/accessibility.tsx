@@ -1,11 +1,12 @@
 import { useRouter } from "next/navigation";
 import BorderButton from "../button/BorderButton";
 import FillButton from "../button/FillButton";
+import LangSwitcher from "../button/LangSwitcher";
 
 const Accessibility = () => {
   const router = useRouter();
   return (
-    <div className="flex gap-[32px] ">
+    <div className="flex gap-[20px] ">
       <BorderButton
         additionalStyle="px-[40px] py-[10px]"
         onClick={() => {
@@ -22,6 +23,7 @@ const Accessibility = () => {
       >
         Sign Up
       </FillButton>
+      <LangSwitcher />
     </div>
   );
 };
