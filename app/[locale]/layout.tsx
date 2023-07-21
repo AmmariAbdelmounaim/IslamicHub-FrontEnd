@@ -8,6 +8,17 @@ import Head from "next/head";
 import { NextIntlClientProvider, createTranslator, useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import { Source_Serif_4, Poppins } from "@next/font/google";
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-sourceSerif",
+});
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-poppins",
+});
 
 type Props = {
   children: ReactNode;
@@ -50,7 +61,15 @@ export default async function LocalLayout({
 
   return (
     <html lang={locale}>
-      <body suppressHydrationWarning={true} className="bg-primary-orange-light">
+      <Head>
+        <meta charSet="UTF-8" />
+        <link rel="icon" type="image/png" href="/IslamicHub.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <body
+        suppressHydrationWarning={true}
+        className={` bg-primary-orange-light ${poppins.variable} ${sourceSerif.variable}`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ReduxProvider>
             <ToastContainer limit={1} />
