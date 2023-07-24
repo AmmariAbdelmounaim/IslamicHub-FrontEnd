@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
-import { Price } from "../../pricing/page";
+import { Price } from "../../[locale]/pricing/page";
 
 export async function POST(request: Request) {
   const stripe = new Stripe(
