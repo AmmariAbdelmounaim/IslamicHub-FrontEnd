@@ -1,41 +1,48 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
-import { SketchPicker } from "react-color";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Field, useField } from "formik";
+import { SketchPicker, ColorResult } from "react-color";
 
-const ColorPicker = () => {
+interface ColorPickerProps<T> {
+  name: keyof T;
+}
+
+export function ColorPicker<T>({ name }: ColorPickerProps<T>) {
   const [color, setColor] = useState("#ffffff");
   const [showPicker, setShowPicker] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const [, meta, helpers] = useField(name as string);
 
-  const handleChange = (chosenColor: any) => {
+  const handleChange = (chosenColor: ColorResult) => {
     setColor(chosenColor.hex);
+    helpers.setValue(chosenColor.hex);
   };
 
   const handlePickerDisplay = () => {
     setShowPicker(!showPicker);
   };
 
-  // Close the picker if the user clicks outside the component
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (ref.current && !ref.current.contains(event.target)) {
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         setShowPicker(false);
       }
-    };
+    },
+    [setShowPicker]
+  );
 
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      // cleanup the event listener when the component unmounts
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   return (
     <div className="mt-[300px] ml-[100px]">
       <div
-        className="px-[16px] py-[8px] flex items-center justify-between w-[229px] h-[56px] hover:cursor-pointer  border-[2px] border-solid border-secondary-brown-normal rounded-[10px]  relative"
         onClick={handlePickerDisplay}
+        className="px-[16px] py-[8px] flex items-center justify-between w-[229px] h-[56px] hover:cursor-pointer  border-[2px] border-solid border-secondary-brown-normal rounded-[10px]  relative"
         ref={ref}
       >
         <div className="px-[16px] py-[14px]">
@@ -54,8 +61,9 @@ const ColorPicker = () => {
           )}
         </div>
       </div>
+      <Field type="hidden" name={name} />
     </div>
   );
-};
+}
 
 export default ColorPicker;
