@@ -4,9 +4,10 @@ import { SketchPicker, ColorResult } from "react-color";
 
 interface ColorPickerProps<T> {
   name: keyof T;
+  label: string;
 }
 
-export function ColorPicker<T>({ name }: ColorPickerProps<T>) {
+export function ColorPicker<T>({ name, label }: ColorPickerProps<T>) {
   const [color, setColor] = useState("#ffffff");
   const [showPicker, setShowPicker] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -39,7 +40,13 @@ export function ColorPicker<T>({ name }: ColorPickerProps<T>) {
   }, [handleClickOutside]);
 
   return (
-    <div className="mt-[300px] ml-[100px]">
+    <div className="flex flex-col gap-[24px] items-center justify-center">
+      <label
+        htmlFor={name as string}
+        className="font-poppins capitalize text-center font-normal text-[18px] text-secondary-brown-darker"
+      >
+        {label}
+      </label>
       <div
         onClick={handlePickerDisplay}
         className="px-[16px] py-[8px] flex items-center justify-between w-[229px] h-[56px] hover:cursor-pointer  border-[2px] border-solid border-secondary-brown-normal rounded-[10px]  relative"
@@ -55,8 +62,13 @@ export function ColorPicker<T>({ name }: ColorPickerProps<T>) {
           style={{ backgroundColor: color }}
         >
           {showPicker && (
-            <div className="absolute bottom-[56px] right-[0px] ">
-              <SketchPicker color={color} onChange={handleChange} />
+            <div className="absolute top-[56px] right-[0px] ">
+              <SketchPicker
+                disableAlpha={false}
+                width="200px"
+                color={color}
+                onChange={handleChange}
+              />
             </div>
           )}
         </div>
