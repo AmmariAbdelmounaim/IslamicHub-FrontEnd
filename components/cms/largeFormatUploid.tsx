@@ -4,13 +4,13 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface LargeFormatUploidProps<T> {
-  label: string;
   name: keyof T;
+  smallFormat?: boolean;
 }
 
 export default function LargeFormatUploid<T>({
-  label,
   name,
+  smallFormat = false,
 }: LargeFormatUploidProps<T>) {
   const [field, meta, helpers] = useField(name as string);
   const [preview, setPreview] = useState<string | null>(null);
@@ -28,14 +28,28 @@ export default function LargeFormatUploid<T>({
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <>
+    <div className="flex flex-col gap-[24px]">
+      <label
+        htmlFor={name as string}
+        className="font-poppins text-[18px] capitalize text-secondary-brown-darker"
+      >
+        {smallFormat ? "small format logo" : "large format logo"}
+      </label>
+
       <div
         {...getRootProps()}
-        className="flex flex-col gap-8 border-2 border-secondary-brown-normal-30-opacity w-[377px] h-[277px] justify-center items-center rounded-lg cursor-pointer relative"
+        className={`flex flex-col gap-8 border-2 border-secondary-brown-normal-30-opacity ${
+          smallFormat ? "w-[196px] h-[163px]" : "w-[377px] h-[277px]"
+        }  justify-center items-center rounded-lg cursor-pointer relative`}
       >
         <input {...getInputProps()} />
 
-        <Image src={"/uploid.svg"} alt="uploid icon" width={78} height={78} />
+        <Image
+          src={"/uploid.svg"}
+          alt="uploid icon"
+          width={smallFormat ? 40 : 78}
+          height={smallFormat ? 40 : 78}
+        />
 
         <p className="font-poppins text-center text-[18px] font-normal text-secondary-brown-darker capitalize">
           uploid your center&apos;s logo here
@@ -54,6 +68,6 @@ export default function LargeFormatUploid<T>({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
