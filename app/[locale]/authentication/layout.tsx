@@ -4,7 +4,6 @@ import { AuthenticationHero } from "../../../components/authentication/hero";
 import { Metadata } from "next";
 import { useAppSelector } from "../../../redux/store";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function AuthenticationLayout({
   children,
