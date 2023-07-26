@@ -2,7 +2,6 @@ import React from "react";
 import { useField } from "formik";
 
 interface CustomCheckBoxProps {
-  id: string;
   name: string;
   label: string;
 }
@@ -17,7 +16,7 @@ export default function CustomCheckBox({ label, name }: CustomCheckBoxProps) {
         {...field}
         name={name}
         value=""
-        className="w-4 h-4 text-primary-orange-normal-hover bg-gray-100 border-gray-300 rounded focus:ring-primary-orange-normal-hover  focus:ring-2 cursor-pointer"
+        className="w-4 h-4 text-primary-orange-normal-hover bg-transparent border-gray-300 rounded focus:ring-primary-orange-normal-hover  focus:ring-2 cursor-pointer"
       />
       <label
         htmlFor={name}
