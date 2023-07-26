@@ -8,12 +8,12 @@ export type INavList = INavItemCms[];
 export const NavListCms: INavList = [
   {
     title: "content management",
-    path: "/cms/content_management",
+    path: "/cms/content",
     icon: "/navbar/content_management.svg",
   },
   {
     title: "calendar management",
-    path: "/cms/calendar_management",
+    path: "/cms/content",
     icon: "/navbar/calendar_management.svg",
   },
   {
