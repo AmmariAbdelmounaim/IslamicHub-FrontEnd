@@ -55,6 +55,7 @@ export default {
           normal: "#997950",
           "normal-hover": "#8A6D48",
           "normal-active": "#7A6140",
+          "normal-30-opacity": "#ce7d394d",
           "normal-60-opacity": "#99795099",
           dark: "#735B3C",
           "dark-hover": "#5C4930",
