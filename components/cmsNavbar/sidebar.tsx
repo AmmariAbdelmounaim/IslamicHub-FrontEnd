@@ -22,7 +22,7 @@ export const CsmSidebar = () => {
             <li key={item.title}>
               <Link
                 href={item.path}
-                className="group flex gap-[10px]  px-[16px] py-[8px] hover:bg-[#CE7D39] "
+                className="group flex gap-[10px]  px-[16px] py-[8px] hover:bg-[#CE7D39] active:bg-[#CE7D39]  "
               >
                 <ReactSVG
                   src={item.icon}
