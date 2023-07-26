@@ -6,6 +6,7 @@ interface CustomFieldProps<T> {
   label: string;
   placeholder: string;
   type?: string;
+  cms?: boolean;
 }
 
 export function CustomField<T>({
@@ -13,15 +14,18 @@ export function CustomField<T>({
   label,
   placeholder,
   type,
+  cms = false,
 }: CustomFieldProps<T>) {
   const { errors, touched } = useFormikContext<T>(); // access formik context
   const hasError = Boolean(touched[name as keyof T] && errors[name as keyof T]);
 
   return (
-    <div>
+    <div className={`${cms && "flex flex-col justify-center w-[366px]"}`}>
       <label
         htmlFor={name as string}
-        className="font-poppins capitalize text-[18px] text-secondary-brown-dark"
+        className={` ${
+          cms && "text-center mb-[16px]"
+        } font-poppins capitalize text-[18px] text-secondary-brown-dark`}
       >
         {label}
       </label>
@@ -31,8 +35,9 @@ export function CustomField<T>({
         name={name}
         placeholder={placeholder}
         className={`
-          w-full flex h-[40px] pl-[16px] items-center rounded-lg min-w-[420px]
-          font-poppins text-[16px] font-medium placeholder:text-color-placeholder bg-transparent
+          w-full flex h-[40px] pl-[16px] items-center rounded-lg ${
+            !cms && "min-w-[420px]"
+          } font-poppins text-[16px] font-medium placeholder:text-color-placeholder bg-transparent
           ${
             hasError
               ? "border-2 border-red-600"
