@@ -18,12 +18,12 @@ export const NavListCms: INavList = [
   },
   {
     title: "gallery management",
-    path: "/cms/gallery_management",
+    path: "/cms/gallery",
     icon: "/navbar/gallery_management.svg",
   },
   {
     title: "donation management",
-    path: "/cms/donation_management",
+    path: "/cms/donation",
     icon: "/navbar/donation_management.svg",
   },
 ];
