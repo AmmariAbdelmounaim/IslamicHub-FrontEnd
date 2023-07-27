@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useRouter } from "next/navigation";
 import { logout } from "../../redux/features/authSlice";
+import { User } from "../../types/types";
 
 const CmsHeader = () => {
-  const { userInfo } = useAppSelector((state) => state.auth);
+  const [userInfo, setUserInfo] = useState<User>(null);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [toggleUserDropdown, setToggleUserDropDown] = useState<boolean>(false);
@@ -14,6 +15,11 @@ const CmsHeader = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const data = localStorage.getItem("userInfo");
+    if (data) {
+      setUserInfo(JSON.parse(data));
+    }
+
     function handleClickOutside(event: MouseEvent) {
       if (
         buttonRef.current &&
