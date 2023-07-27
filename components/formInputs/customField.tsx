@@ -7,6 +7,7 @@ interface CustomFieldProps<T> {
   placeholder: string;
   type?: string;
   cms?: boolean;
+  textarea?: boolean;
 }
 
 export function CustomField<T>({
@@ -15,6 +16,7 @@ export function CustomField<T>({
   placeholder,
   type,
   cms = false,
+  textarea = false,
 }: CustomFieldProps<T>) {
   const { errors, touched } = useFormikContext<T>(); // access formik context
   const hasError = Boolean(touched[name as keyof T] && errors[name as keyof T]);
@@ -31,13 +33,17 @@ export function CustomField<T>({
       </label>
       <ErrorMessage name={name as string} />
       <Field
+        as={`${textarea ? "textarea" : "input"}`}
         type={type || "text"}
         name={name}
         placeholder={placeholder}
         className={`
-          w-full flex h-[40px] pl-[16px] items-center rounded-lg ${
-            !cms && "min-w-[420px]"
-          } font-poppins text-[16px] font-medium placeholder:text-color-placeholder bg-transparent
+          w-full flex  ${
+            textarea ? "h-[100px] pt-[10px] pl-[10px]" : "h-[40px] pl-[16px]"
+          }
+           items-center rounded-lg ${
+             !cms && "min-w-[420px]"
+           } font-poppins text-[16px] font-medium placeholder:text-color-placeholder bg-transparent
           ${
             hasError
               ? "border-2 border-red-600"
