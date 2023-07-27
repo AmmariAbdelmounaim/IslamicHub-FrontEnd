@@ -6,7 +6,7 @@ import { logout } from "../../redux/features/authSlice";
 import { User } from "../../types/types";
 
 const CmsHeader = () => {
-  const [userInfo, setUserInfo] = useState<User>(null);
+  const [userInfo, setUserInfo] = useState<User>();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [toggleUserDropdown, setToggleUserDropDown] = useState<boolean>(false);
