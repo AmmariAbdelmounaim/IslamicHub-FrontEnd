@@ -12,10 +12,10 @@ const FillButton: React.FC<FillButtonProps> = ({
   ...props
 }) => {
   const baseStyle =
-    "rounded-full py-[16px] px-[56px] capitalize font-medium font-poppins text-[18px] leading-none";
+    "rounded-full py-[16px] px-[40px] capitalize font-medium font-poppins text-[18px] leading-none flex items-center justify-center";
   const colorStyle =
     "bg-primary-orange-normal text-primary-orange-light hover:bg-primary-orange-normal-hover";
-  const className = `${baseStyle} ${colorStyle} ${additionalStyle}`;
+  const className = `${additionalStyle} ${baseStyle} ${colorStyle} `;
 
   return (
     <button className={className} {...props}>
