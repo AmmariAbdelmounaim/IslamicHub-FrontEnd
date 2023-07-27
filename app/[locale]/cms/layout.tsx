@@ -6,9 +6,6 @@ import CsmSidebar from "../../../components/cmsNavbar/sidebar";
 import CmsHeader from "../../../components/cmsNavbar/header";
 
 export default function CmsLayout({ children }: { children: ReactNode }) {
-  const { userInfo } = useAppSelector((state) => state.auth);
-  const router = useRouter();
-
   return (
     <>
       <aside className="fixed left-0 top-0">
