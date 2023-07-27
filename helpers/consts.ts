@@ -13,7 +13,7 @@ export const NavListCms: INavList = [
   },
   {
     title: "calendar management",
-    path: "/cms/content",
+    path: "/cms/calendar",
     icon: "/navbar/calendar_management.svg",
   },
   {
