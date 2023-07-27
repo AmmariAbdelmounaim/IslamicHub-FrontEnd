@@ -1,3 +1,6 @@
+"use client";
+"use strict";
+
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Field, useField } from "formik";
 import { SketchPicker, ColorResult } from "react-color";
@@ -8,11 +11,7 @@ interface ColorPickerProps<T> {
   defaultColor: string;
 }
 
-export function ColorPicker<T>({
-  name,
-  label,
-  defaultColor,
-}: ColorPickerProps<T>) {
+function ColorPicker<T>({ name, label, defaultColor }: ColorPickerProps<T>) {
   const [color, setColor] = useState<string>(defaultColor);
   const [showPicker, setShowPicker] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -82,5 +81,4 @@ export function ColorPicker<T>({
     </div>
   );
 }
-
 export default ColorPicker;
