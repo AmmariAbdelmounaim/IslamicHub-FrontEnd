@@ -51,13 +51,26 @@ function ContentManagement() {
                 </div>
 
                 <div className="flex justify-between px-[8px] ">
-                  <ColorPicker name={"titleColor"} label="title color" />
-                  <ColorPicker name={"textColor"} label="text color" />
+                  <ColorPicker
+                    name={"titleColor"}
+                    label="title color"
+                    defaultColor="#362A1C"
+                  />
+                  <ColorPicker
+                    name={"textColor"}
+                    label="text color"
+                    defaultColor="#5D381A"
+                  />
                   <ColorPicker
                     name={"backgroundColor"}
                     label="background color"
+                    defaultColor="#F5F2EE"
                   />
-                  <ColorPicker name={"primaryColor"} label="primary color" />
+                  <ColorPicker
+                    name={"primaryColor"}
+                    label="primary color"
+                    defaultColor="#CE7D39"
+                  />
                 </div>
               </div>
               {/* Uploid section */}
@@ -85,8 +98,13 @@ function ContentManagement() {
                   <ColorPicker
                     name={"backgroundColorHeader"}
                     label="background color"
+                    defaultColor="#F5F2EE"
                   />
-                  <ColorPicker name={"textColorHeader"} label="text color" />
+                  <ColorPicker
+                    name={"textColorHeader"}
+                    label="text color"
+                    defaultColor="#362A1C"
+                  />
                 </div>
                 <CmsCustomNavbar />
               </div>
@@ -101,7 +119,7 @@ function ContentManagement() {
               </div>
               {/* Footer */}
               <div className="flex flex-col gap-[24px]">
-                <div className="border-b border-b-secondary-brown-normal-30-opacity">
+                <div className="border-b border-b-secondary-brown-normal-30-opacity ">
                   <h1 className="font-poppins capitalize text-[24px] text-secondary-brown-darker font-semibold mb-[10px] ">
                     footer
                   </h1>
@@ -111,11 +129,16 @@ function ContentManagement() {
                   <ColorPicker
                     name={"backgroundColorFooter"}
                     label="background color"
+                    defaultColor="#F5F2EE"
                   />
-                  <ColorPicker name={"textColorFooter"} label="text color" />
+                  <ColorPicker
+                    name={"textColorFooter"}
+                    label="text color"
+                    defaultColor="#362A1C"
+                  />
                 </div>
               </div>
-              <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity py-[24px] flex flex-col gap-[16px] items-center justify-center">
+              <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity py-[24px] rounded-[5px] flex flex-col gap-[16px] items-center justify-center">
                 <p className="font-poppins text-[18px] capitalize text-secondary-brown-darker text-center">
                   logo
                 </p>
@@ -163,7 +186,7 @@ function ContentManagement() {
                   />
                 </div>
               </div>
-              ?{/*  */}
+              {/* contact infromation  */}
               <div>
                 <h1 className="font-poppins capitalize text-[20px] text-secondary-brown-darker font-semibold mb-[10px] ">
                   contact information
