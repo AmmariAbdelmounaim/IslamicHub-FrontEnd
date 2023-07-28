@@ -6,6 +6,7 @@ import { Form, Formik } from "formik";
 import { CustomField } from "../../../../components/formInputs/customField";
 import FillButton from "../../../../components/button/FillButton";
 import EventCard from "../../../../components/cms/eventCard";
+import { useTranslations } from "next-intl";
 
 interface FormValues {
   favoriteColor: string;
@@ -14,7 +15,9 @@ interface FormValues {
 const initialValues: FormValues = {
   favoriteColor: "#ffffff",
 };
+
 export default function CalendarManagement() {
+  const t = useTranslations("calendar");
   return (
     <Formik
       initialValues={initialValues}

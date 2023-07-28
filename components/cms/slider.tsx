@@ -75,7 +75,7 @@ function Slider<T>({
         </div>
       </div>
       {previews && (
-        <div className="flex flex-nowrap overflow-x-auto">
+        <div className="flex flex-nowrap gap-[40px] overflow-x-auto">
           {previews.map((preview, index) => (
             <div
               key={index}

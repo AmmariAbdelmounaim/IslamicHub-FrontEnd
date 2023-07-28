@@ -4,6 +4,7 @@ import React from "react";
 import { CustomField } from "../../../../components/formInputs/customField";
 import Slider from "../../../../components/cms/slider";
 import FillButton from "../../../../components/button/FillButton";
+import { useTranslations } from "next-intl";
 
 interface FormValues {
   favoriteColor: string;
@@ -14,6 +15,8 @@ const initialValues: FormValues = {
 };
 
 function DonationManagement() {
+  const t = useTranslations("donation");
+
   return (
     <Formik
       initialValues={initialValues}

@@ -5,6 +5,17 @@
   "SignIn": {
     "password": "password"
   },
+  "LocaleLayout": {
+    "title": ""
+  },
+  "calendar": {},
+  "content": {},
+  "donation": {},
+  "gallery": {},
+  "pricing": {},
+  "verification": {},
+  "welcome": {},
+
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, fr {French} en {English} other {Unknown}}"

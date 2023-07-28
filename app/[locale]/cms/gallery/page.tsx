@@ -4,6 +4,7 @@ import Slider from "../../../../components/cms/slider";
 import { Form, Formik } from "formik";
 import ColorPicker from "../../../../components/cms/colorPicker";
 import FillButton from "../../../../components/button/FillButton";
+import { useTranslations } from "next-intl";
 
 interface FormValues {
   favoriteColor: string;
@@ -14,6 +15,8 @@ const initialValues: FormValues = {
 };
 
 function GalleryManagement() {
+  const t = useTranslations("gallery");
+
   return (
     <Formik
       initialValues={initialValues}

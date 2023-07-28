@@ -5,6 +5,13 @@
   "SignIn": {
     "password": "mot de passe"
   },
+  "calendar": {},
+  "content": {},
+  "donation": {},
+  "gallery": {},
+  "pricing": {},
+  "verification": {},
+  "welcome": {},
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, en {Anglais} fr {Français} other {Inconnue}}"
