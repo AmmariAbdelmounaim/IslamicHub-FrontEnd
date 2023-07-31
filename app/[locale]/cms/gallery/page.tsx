@@ -7,11 +7,15 @@ import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
 
 interface FormValues {
-  favoriteColor: string;
+  slider: File[] | null;
+  backgroundColor: string;
+  iconColor: string;
 }
 
 const initialValues: FormValues = {
-  favoriteColor: "#ffffff",
+  slider: null,
+  backgroundColor: "#997950",
+  iconColor: "#F0EBE5",
 };
 
 function GalleryManagement() {

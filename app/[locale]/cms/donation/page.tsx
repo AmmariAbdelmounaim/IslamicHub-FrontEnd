@@ -8,12 +8,29 @@ import { useTranslations } from "next-intl";
 
 interface FormValues {
   favoriteColor: string;
+  donationReason: string;
+  encouragingText: string;
+  dollarsAmount: string;
+  donationImage: File | null;
+  firstAmount: string;
+  secondAmount: string;
+  thirdAmount: string;
+  fourthAmount: string;
+  fifthAmount: string;
 }
 
 const initialValues: FormValues = {
   favoriteColor: "#ffffff",
+  donationReason: "",
+  encouragingText: "",
+  dollarsAmount: "",
+  donationImage: null,
+  firstAmount: "",
+  secondAmount: "",
+  thirdAmount: "",
+  fourthAmount: "",
+  fifthAmount: "",
 };
-
 function DonationManagement() {
   const t = useTranslations("donation");
 
@@ -57,7 +74,7 @@ function DonationManagement() {
                   <CustomField
                     label="encouraging text"
                     placeholder="Ex: Help repair the cetner"
-                    name={"donationReason"}
+                    name={"encouragingText"}
                   />
                 </div>
               </div>

@@ -3,17 +3,44 @@ import React from "react";
 import Event from "../../../../components/cms/event";
 import ColorPicker from "../../../../components/cms/colorPicker";
 import { Form, Formik } from "formik";
-import { CustomField } from "../../../../components/formInputs/customField";
 import FillButton from "../../../../components/button/FillButton";
 import EventCard from "../../../../components/cms/eventCard";
 import { useTranslations } from "next-intl";
 
 interface FormValues {
-  favoriteColor: string;
+  firsteventName: string;
+  firsteventDescription: string;
+  firsteventDate: string;
+  firsteventLocation: string;
+  secondeventName: string;
+  secondeventDescription: string;
+  secondeventDate: string;
+  secondeventLocation: string;
+  thirdeventName: string;
+  thirdeventDescription: string;
+  thirdeventDate: string;
+  thirdeventLocation: string;
+  borderColor: string;
+  backgroundColor: string;
+  additionalInfoColor: string;
 }
 
 const initialValues: FormValues = {
-  favoriteColor: "#ffffff",
+  firsteventName: "",
+  firsteventDescription: "",
+  firsteventDate: "",
+  firsteventLocation: "",
+  secondeventName: "",
+  secondeventDescription: "",
+  secondeventDate: "",
+  secondeventLocation: "",
+  thirdeventName: "",
+  thirdeventDescription: "",
+  thirdeventDate: "",
+  thirdeventLocation: "",
+  borderColor: "#362A1C",
+  backgroundColor: "#F8ECE1",
+  additionalInfoColor: "#CE7D39",
 };
 
 export default function CalendarManagement() {
@@ -58,17 +85,17 @@ export default function CalendarManagement() {
                 </p>
               </div>
               <div className="flex justify-between">
-                <ColorPicker
+                <ColorPicker<FormValues>
                   label="border color"
                   name={"borderColor"}
                   defaultColor="#362A1C"
                 />
-                <ColorPicker
+                <ColorPicker<FormValues>
                   label="background color"
                   name={"backgroundColor"}
                   defaultColor="#F8ECE1"
                 />
-                <ColorPicker
+                <ColorPicker<FormValues>
                   label="additional info color"
                   name={"additionalInfoColor"}
                   defaultColor="#CE7D39"

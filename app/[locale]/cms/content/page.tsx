@@ -9,11 +9,57 @@ import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
 
 interface FormValues {
-  favoriteColor: string;
+  titleColor: string;
+  textColor: string;
+  backgroundColor: string;
+  primaryColor: string;
+  largeUploid: File | null;
+  smallUploid: File | null;
+  backgroundColorHeader: string;
+  textColorHeader: string;
+  aboutUs: boolean;
+  ourServices: boolean;
+  ourEvents: boolean;
+  prayerTime: boolean;
+  testimonials: boolean;
+  contactUs: boolean;
+  backgroundColorFooter: string;
+  textColorFooter: string;
+  facebookLink: string;
+  instagramLink: string;
+  twitterLink: string;
+  threadsLink: string;
+  email: string;
+  phoneNumber: string;
+  address: string;
+  whatsapp: string;
 }
 
 const initialValues: FormValues = {
-  favoriteColor: "#ffffff",
+  titleColor: "#362A1C",
+  textColor: "#5D381A",
+  backgroundColor: "#F5F2EE",
+  primaryColor: "#CE7D39",
+  largeUploid: null,
+  smallUploid: null,
+  backgroundColorHeader: "#F5F2EE",
+  textColorHeader: "#362A1C",
+  aboutUs: false,
+  ourServices: false,
+  ourEvents: false,
+  prayerTime: false,
+  testimonials: false,
+  contactUs: false,
+  backgroundColorFooter: "#F5F2EE",
+  textColorFooter: "#362A1C",
+  facebookLink: "",
+  instagramLink: "",
+  twitterLink: "",
+  threadsLink: "",
+  email: "",
+  phoneNumber: "",
+  address: "",
+  whatsapp: "",
 };
 
 function ContentManagement() {
