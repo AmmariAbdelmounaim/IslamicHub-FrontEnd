@@ -56,7 +56,7 @@ const CmsHeader = () => {
         {userInfo?.lastname ? userInfo.firstname.charAt(0) : ""}
       </button>
       <div
-        className={`z-50  ${
+        className={`z-40  ${
           toggleUserDropdown ? "fixed top-[70px] right-[12px]" : "hidden"
         }   my-4 text-base list-none bg-primary-orange-light divide-y divide-primary-orange-normal-hover rounded shadow border-[2px] border-solid border-primary-orange-normal-hover font-poppins `}
         ref={dropdownRef}

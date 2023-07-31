@@ -15,21 +15,21 @@ export default function CmsLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <aside
-        className={`fixed left-0 top-0 z-50  ${
+        className={`fixed left-0 top-0 z-40  ${
           isCollapsed ? "w-[57px]" : "w-[280px]"
         }`}
       >
         <CsmSidebar isCollapsed={isCollapsed} onToggle={handleSidebarToggle} />
       </aside>
       <nav
-        className={`fixed right-0 w-screen z-40 transition-all duration-300 ${
+        className={`fixed right-0 w-screen z-30 transition-all duration-300 ${
           isCollapsed ? "pl-[80px]" : "pl-[312px]"
         }`}
       >
         <CmsHeader />
       </nav>
       <div
-        className={`pt-[120px] pr-[32px] z-30 h-full transition-all duration-300 ${
+        className={`pt-[120px] pr-[32px] z-20 h-full transition-all duration-300 ${
           isCollapsed ? "pl-[80px]" : "pl-[312px]"
         }`}
       >

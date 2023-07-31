@@ -5,7 +5,6 @@ import LargeFormatUploid from "../../../../components/cms/largeFormatUploid";
 import CmsCustomNavbar from "../../../../components/cms/cmsNavbar";
 import CustomCheckBox from "../../../../components/cms/checkBox";
 import { CustomField } from "../../../../components/formInputs/customField";
-import { CustomPhoneInput } from "../../../../components/formInputs/customPhoneInput";
 import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
 
@@ -47,7 +46,7 @@ function ContentManagement() {
             </div>
             <div className="p-[16px] border-solid border-[1px] border-secondary-brown-normal-30-opacity rounded-[10px] flex flex-col gap-[40px]">
               {/* Color Palette */}
-              <div className="flex flex-col gap-[24px] z-50">
+              <div className="flex flex-col gap-[24px] z-10">
                 <div className="border-b border-b-secondary-brown-normal-30-opacity">
                   <h1 className="font-poppins capitalize text-[24px] text-secondary-brown-darker font-semibold mb-[10px] ">
                     color palette
