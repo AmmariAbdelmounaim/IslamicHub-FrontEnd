@@ -25,6 +25,11 @@ export default function LargeFormatUploid<T>({
     reader.readAsDataURL(file);
   }, []);
 
+  const removeFile = useCallback(() => {
+    helpers.setValue(null);
+    setPreview(null);
+  }, []);
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
@@ -56,14 +61,25 @@ export default function LargeFormatUploid<T>({
         </p>
       </div>
       {preview && (
-        <div className="inline-flex rounded-[2px] border-solid border-[1px] border-secondary-brown-normal-30-opacity mt-[10px]  w-[100px] h-[100px] p-[4px] box-border">
+        <div className="inline-flex rounded-[2px] border-solid border-[1px] border-secondary-brown-normal-30-opacity mt-[10px]  w-[100px] h-[100px] p-[4px] box-border relative">
+          <button
+            onClick={removeFile}
+            className="absolute flex items-center justify-center top-[-12px] right-[-12px] bg-primary-orange-normal hover:bg-primary-orange-normal-hover rounded-full text-white w-6 h-6"
+          >
+            <Image
+              src={"/cross_icon.svg"}
+              width={12}
+              height={12}
+              alt="cross icon"
+            />
+          </button>
           <div className="flex min-w-0 overflow-hidden">
             <Image
               src={preview}
               alt="Preview"
               className="block w-auto h-[100%] "
-              width={450}
-              height={100}
+              width={!smallFormat ? 450 : 350}
+              height={!smallFormat ? 100 : 50}
             />
           </div>
         </div>
