@@ -86,7 +86,7 @@ function ContentManagement() {
 
                 <div className="flex gap-[56px]">
                   <LargeFormatUploid name={"largeUploid"} />
-                  <LargeFormatUploid name={"smallUploid"} smallFormat={true} />
+                  <LargeFormatUploid name={"smallUploid"} smallFormat />
                 </div>
               </div>
               {/* Header */}
