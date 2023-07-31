@@ -4,27 +4,42 @@ import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 interface SliderProps<T> {
   name: keyof T;
+  uploidLimit?: number;
   label?: string;
 }
 
 function Slider<T>({
   name,
   label = "upload images for your slider",
+  uploidLimit = 5,
 }: SliderProps<T>) {
   const [field, meta, helpers] = useField(name as string);
   const [previews, setPreviews] = useState<Array<string>>([]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    helpers.setValue(acceptedFiles);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const existingFiles = field.value || [];
+      if (acceptedFiles.length + existingFiles.length > uploidLimit) {
+        {
+          uploidLimit > 1
+            ? alert("You can only upload up to 5 files")
+            : alert("You can only uploid one file");
+        }
+        return;
+      }
 
-    acceptedFiles.map((file) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviews((prevState) => [...prevState, reader.result as string]);
-      };
-      reader.readAsDataURL(file);
-    });
-  }, []);
+      helpers.setValue([...existingFiles, ...acceptedFiles]);
+
+      acceptedFiles.map((file) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviews((prevState) => [...prevState, reader.result as string]);
+        };
+        reader.readAsDataURL(file);
+      });
+    },
+    [field.value]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {

@@ -88,6 +88,7 @@ function DonationManagement() {
                   <Slider
                     name={"donationImage"}
                     label="uploid an image for the donation ..."
+                    uploidLimit={1}
                   />
                 </div>
               </div>
