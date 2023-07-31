@@ -2,7 +2,6 @@ import { useField } from "formik";
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-
 interface SliderProps<T> {
   name: keyof T;
   label?: string;
@@ -36,7 +35,7 @@ function Slider<T>({
   });
 
   return (
-    <div className="flex gap-[40px] items-center ">
+    <div className="flex gap-[40px] items-center overflow-x-auto whitespace-nowrap scrollbar-hide p-[10px]">
       <div className="">
         <div
           {...getRootProps()}
@@ -75,11 +74,11 @@ function Slider<T>({
         </div>
       </div>
       {previews && (
-        <div className="flex flex-nowrap gap-[40px] overflow-x-auto">
+        <div className="flex gap-[40px] ">
           {previews.map((preview, index) => (
             <div
               key={index}
-              className="inline-flex rounded-[10px] border-solid border-[1px] border-secondary-brown-normal-30-opacity   w-[377px] h-[278px] box-border"
+              className="inline-flex rounded-[10px] border-solid border-[1px] border-secondary-brown-normal-30-opacity w-[377px] h-[278px] box-border relative"
             >
               <div className="flex min-w-0 overflow-hidden">
                 <Image
@@ -90,6 +89,27 @@ function Slider<T>({
                   height={100}
                 />
               </div>
+              <button
+                className="absolute top-[-10px] right-[-10px] bg-primary-orange-normal hover:bg-primary-orange-normal-hover text-white rounded-full w-6 h-6 flex justify-center items-center"
+                onClick={() => {
+                  // Create new arrays without the selected image/file
+                  const newPreviews = [...previews];
+                  newPreviews.splice(index, 1);
+                  const newFiles = [...field.value];
+                  newFiles.splice(index, 1);
+
+                  // Update state and field value
+                  setPreviews(newPreviews);
+                  helpers.setValue(newFiles);
+                }}
+              >
+                <Image
+                  src={"/cross_icon.svg"}
+                  width={10}
+                  height={10}
+                  alt="cross icon"
+                />
+              </button>
             </div>
           ))}
         </div>
