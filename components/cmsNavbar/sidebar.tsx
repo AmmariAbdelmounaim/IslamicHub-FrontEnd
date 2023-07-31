@@ -58,7 +58,10 @@ export const CsmSidebar = ({
               <Link
                 href={item.path}
                 className={`group flex gap-[10px]  px-[16px] py-[8px] ${
-                  pathname === item.path ? "bg-[#CE7D39]" : ""
+                  pathname.split("/")[pathname.split("/").length - 1] ===
+                  item.path.split("/")[item.path.split("/").length - 1]
+                    ? "bg-[#CE7D39]"
+                    : ""
                 } hover:bg-[#CE7D39] active:bg-[#CE7D39] justify-${
                   isCollapsed ? "center" : "start"
                 }`}
@@ -66,7 +69,9 @@ export const CsmSidebar = ({
                 <ReactSVG
                   src={item.icon}
                   className={`svg-icon group-hover:stroke-white group-hover:fill-white ${
-                    pathname === item.path && "stroke-white fill-white"
+                    pathname.split("/")[pathname.split("/").length - 1] ===
+                      item.path.split("/")[item.path.split("/").length - 1] &&
+                    "stroke-white fill-white"
                   }  stroke-[#362A1C] fill-[#362A1C]`}
                   beforeInjection={(svg) => {
                     svg.setAttribute("style", "width: 24px; height: 24px");
