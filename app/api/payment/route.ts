@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       },
     ],
     mode: "subscription",
-    success_url: "http://localhost:3000/welcome",
+    success_url: "http://localhost:3000/cms",
     cancel_url: "http://localhost:3000/",
   });
 
