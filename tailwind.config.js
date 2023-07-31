@@ -88,5 +88,5 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
