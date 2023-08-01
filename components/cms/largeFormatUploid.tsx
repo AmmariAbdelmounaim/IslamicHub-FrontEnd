@@ -17,10 +17,10 @@ export default function LargeFormatUploid<T>({
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
-    helpers.setValue(file);
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreview(reader.result as string);
+      helpers.setValue(reader.result);
     };
     reader.readAsDataURL(file);
   }, []);
@@ -62,7 +62,7 @@ export default function LargeFormatUploid<T>({
       </div>
       {preview && (
         <div
-          className={`inline-flex rounded-[2px] border-solid border-[1px] border-secondary-brown-normal-30-opacity mt-[10px] ${
+          className={`inline-flex rounded-[2px] border-solid border-[1px] border-secondary-brown-normal-30-opacity mt-[10px] bg-primary-orange-light-active ${
             !smallFormat ? "w-[100px] h-[100px]" : "w-[80px] h-[80px]"
           }  p-[4px] box-border relative`}
         >

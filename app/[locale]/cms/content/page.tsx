@@ -13,8 +13,8 @@ interface FormValues {
   textColor: string;
   backgroundColor: string;
   primaryColor: string;
-  largeUploid: File | null;
-  smallUploid: File | null;
+  largeUploid: string | null;
+  smallUploid: string | null;
   backgroundColorHeader: string;
   textColorHeader: string;
   aboutUs: boolean;
@@ -42,8 +42,8 @@ const initialValues: FormValues = {
   primaryColor: "#CE7D39",
   largeUploid: null,
   smallUploid: null,
-  backgroundColorHeader: "#F5F2EE",
-  textColorHeader: "#362A1C",
+  backgroundColorHeader: "#9B5E2B",
+  textColorHeader: "#F5F2EE",
   aboutUs: false,
   ourServices: false,
   ourEvents: false,
@@ -75,7 +75,7 @@ function ContentManagement() {
         }, 400);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ values }) => (
         <Form>
           <div className="flex flex-col gap-[40px] pb-[20px]">
             {/* introduction */}
@@ -113,12 +113,12 @@ function ContentManagement() {
                   <ColorPicker
                     name={"backgroundColor"}
                     label="background color"
-                    defaultColor="#F5F2EE"
+                    defaultColor="#9B5E2B "
                   />
                   <ColorPicker
                     name={"primaryColor"}
                     label="primary color"
-                    defaultColor="#CE7D39"
+                    defaultColor="#FAF2EB"
                   />
                 </div>
               </div>
@@ -147,15 +147,25 @@ function ContentManagement() {
                   <ColorPicker
                     name={"backgroundColorHeader"}
                     label="background color"
-                    defaultColor="#F5F2EE"
+                    defaultColor="#9B5E2B"
                   />
                   <ColorPicker
                     name={"textColorHeader"}
                     label="text color"
-                    defaultColor="#362A1C"
+                    defaultColor="#F5F2EE"
                   />
                 </div>
-                <CmsCustomNavbar />
+                <CmsCustomNavbar
+                  aboutUs={values.aboutUs}
+                  contactUs={values.contactUs}
+                  ourEvents={values.ourEvents}
+                  ourServices={values.ourServices}
+                  prayerTime={values.prayerTime}
+                  testimonials={values.testimonials}
+                  backgroundColor={values.backgroundColorHeader}
+                  textColor={values.textColorHeader}
+                  logo={values.largeUploid as string}
+                />
               </div>
               {/* Navigation links */}
               <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity rounded-[5px] py-[24px] px-[8px] flex gap-[16px] justify-between ">
@@ -187,7 +197,7 @@ function ContentManagement() {
                   />
                 </div>
               </div>
-              <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity py-[24px] rounded-[5px] flex flex-col gap-[16px] items-center justify-center">
+              <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity p-[8px] rounded-[5px] flex flex-col gap-[16px] items-center justify-center">
                 <p className="font-poppins text-[18px] capitalize text-secondary-brown-darker text-center">
                   logo
                 </p>
