@@ -127,9 +127,11 @@ function CmsCustomFooter({
             color: `${textColor ? textColor : "#F5F2EE"}`,
           }}
         >
-          <p className="font-poppins text-[18px]">Email: {email}</p>
           <p className="font-poppins text-[18px]">
-            Call Anytime: {phoneNumber}
+            Email: {email ? email : "youremail@gmail.com"}
+          </p>
+          <p className="font-poppins text-[18px]">
+            Call Anytime: {phoneNumber ? phoneNumber : "+1676790645"}
           </p>
         </div>
       </div>

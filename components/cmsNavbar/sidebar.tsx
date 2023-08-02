@@ -80,7 +80,9 @@ export const CsmSidebar = ({
                 {!isCollapsed && (
                   <p
                     className={`font-poppins capitalize font-[18px] text-secondary-brown-darker ${
-                      pathname === item.path && "text-white"
+                      pathname.split("/")[pathname.split("/").length - 1] ===
+                        item.path.split("/")[item.path.split("/").length - 1] &&
+                      "text-white"
                     } group-hover:text-white`}
                   >
                     {item.title}
