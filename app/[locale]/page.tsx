@@ -1,7 +1,5 @@
 "use client";
 import FillButton from "../../components/button/FillButton";
-import { useMediaQuery } from "react-responsive";
-import { DeviceSize } from "../../components/responsive";
 import HeroImage from "../../public/assets/heroimg.jpg";
 import CardImage from "../../public/assets/cardimg.jpg";
 import CardImage1 from "../../public/assets/cardimg1.jpg";
@@ -16,7 +14,6 @@ import Footer from "../../components/footer";
 import { useTranslations } from "next-intl";
 
 export default function LandingPage() {
-  const isMobile = useMediaQuery({ maxWidth: DeviceSize.tablet });
   const [domLoaded, setDomLoaded] = useState(false);
   const t = useTranslations("Index");
 
@@ -30,12 +27,7 @@ export default function LandingPage() {
           <div className=" bg-primary-orange-light">
             <Navbar />
             <Reveal>
-              <div
-                className={`flex ${
-                  !isMobile &&
-                  "p-[100px] gap-[125px] justify-between items-center"
-                }`}
-              >
+              <div className="flex sm:p-[100px] sm:gap-[125px] sm:justify-between sm:items-center">
                 <div className="py-[32px] pl-[20px] flex flex-col gap-[32px] pr-[42px]  sm:gap-[64px] sm:p-0">
                   <div>
                     <h1 className="capitalize font-sourceSerif text-[36px] font-semibold text-primary-orange-darker sm:text-[64px]">
@@ -50,15 +42,14 @@ export default function LandingPage() {
                     start now
                   </FillButton>
                 </div>
-                {!isMobile && (
-                  <div>
-                    <Image
-                      src={HeroImage}
-                      className="rounded-lg border border-primary-orange-normal shadow-md w-[583px] h-[523px]"
-                      alt="hero image"
-                    />
-                  </div>
-                )}
+
+                <div className="hidden sm:block">
+                  <Image
+                    src={HeroImage}
+                    className="rounded-lg border border-primary-orange-normal shadow-md w-[583px] h-[523px]"
+                    alt="hero image"
+                  />
+                </div>
               </div>
             </Reveal>
 
