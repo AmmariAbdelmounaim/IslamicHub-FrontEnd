@@ -1,66 +1,67 @@
 // components/Navbar.tsx
 import Link from "next/link";
-
+import Image from "next/image";
+import FillButton from "../../../components/button/FillButton";
 const Navbar = () => {
   return (
-    <div className="h-full flex justify-center">
-      <ul className="m-0 p-0 flex h-full gap-x-[33px] flex"> {/* Ajouter la classe "flex" ici */}
-        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px]">
+    <div className="fixed top-0 right-0 left-0 flex px-[100px] bg-primary-orange-dark-50-opacity justify-between items-center z-50">
+      <div>
+        <Image
+          src={"/mockLogo.svg"}
+          alt="mock logo for islamic center"
+          width={118}
+          height={57}
+        />
+      </div>
+      <ul className="h-full gap-[33px] py-[22px] flex  items-center ">
+        {" "}
+        {/* Ajouter la classe "flex" ici */}
+        <li>
           <Link
-            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            className="no-underline  transition-all text-secondary-brown-light font-poppins capitalize text-[20px] hover:text-secondary-brown-light-hover"
             href="#"
           >
             Prayer time
           </Link>
         </li>
-        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px]">
+        <li>
           <Link
-            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            className="no-underline  transition-all text-secondary-brown-light font-poppins capitalize text-[20px] hover:text-secondary-brown-light-hover"
             href="#"
           >
             About us
           </Link>
         </li>
-        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px] ">
+        <li>
           <Link
-            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            className="no-underline  transition-all text-secondary-brown-light font-poppins capitalize text-[20px] hover:text-secondary-brown-light-hover"
             href="#"
           >
             Our services
           </Link>
         </li>
-        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px] ">
+        <li>
           <Link
-            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            className="no-underline  transition-all text-secondary-brown-light font-poppins capitalize text-[20px] hover:text-secondary-brown-light-hover"
             href="#"
           >
             Our Events
           </Link>
         </li>
-        <li className="h-full text-primary-orange-darker font-poppins capitalize text-[18px] ">
+        <li>
           <Link
-            className="no-underline text-primary-orange-darker text-[18px] transition-all hover:text-primary-orange-dark-hover"
+            className="no-underline  transition-all text-secondary-brown-light font-poppins capitalize text-[20px] hover:text-secondary-brown-light-hover"
             href="#"
           >
             Contact Us
           </Link>
         </li>
-        <li className="h-full flex items-center ml-auto"> {/* Utiliser la classe "ml-auto" ici */}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            style={{
-              display: "flex",
-              padding: "12px 40px",
-              alignItems: "flex-start",
-              gap: "10px",
-              borderRadius: "30px",
-              background: "var(--primary-orange-normal, #CE7D39)"
-            }}
-          >
-            Donation
-          </button>
+        <li className="h-full flex items-center ml-auto">
+          {" "}
+          {/* Utiliser la classe "ml-auto" ici */}
         </li>
       </ul>
+      <FillButton>donation</FillButton>
     </div>
   );
 };
