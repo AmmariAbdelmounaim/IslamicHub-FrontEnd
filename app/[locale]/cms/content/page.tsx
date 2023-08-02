@@ -7,6 +7,7 @@ import CustomCheckBox from "../../../../components/cms/checkBox";
 import { CustomField } from "../../../../components/formInputs/customField";
 import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
+import CmsCustomFooter from "../../../../components/cms/cmsFooter";
 
 interface FormValues {
   titleColor: string;
@@ -198,17 +199,17 @@ function ContentManagement() {
                 </div>
               </div>
               <div className="border-solid border-[2px] border-secondary-brown-normal-30-opacity p-[8px] rounded-[5px] flex flex-col gap-[16px] items-center justify-center">
-                <p className="font-poppins text-[18px] capitalize text-secondary-brown-darker text-center">
-                  logo
-                </p>
-                <div className="flex flex-col gap-[32px]">
-                  <p className="font-poppins text-[18px] capitalize text-secondary-brown-darker text-center">
-                    social media
-                  </p>
-                  <p className="font-poppins text-[18px] capitalize text-secondary-brown-darker text-center">
-                    contact information
-                  </p>
-                </div>
+                <CmsCustomFooter
+                  backgroundColor={values.backgroundColorFooter}
+                  email={values.email}
+                  facebook={values.facebookLink}
+                  instagram={values.instagramLink}
+                  logo={values.largeUploid as string}
+                  phoneNumber={values.phoneNumber}
+                  textColor={values.textColorFooter}
+                  threads={values.threadsLink}
+                  twitter={values.twitterLink}
+                />
               </div>
               {/* Social media */}
               <div>
