@@ -8,8 +8,14 @@ import { CustomField } from "../../../../components/formInputs/customField";
 import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
 import CmsCustomFooter from "../../../../components/cms/cmsFooter";
+import { useCreateCenterMutation } from "../../../../redux/features/centersApiSlice";
+import { useAppSelector } from "../../../../redux/store";
+import { toast } from "react-toastify";
 
 interface FormValues {
+  centerName: string;
+  centerAddress: string;
+  centerDescription: string;
   titleColor: string;
   textColor: string;
   backgroundColor: string;
@@ -37,6 +43,9 @@ interface FormValues {
 }
 
 const initialValues: FormValues = {
+  centerName: "",
+  centerAddress: "",
+  centerDescription: "",
   titleColor: "#362A1C",
   textColor: "#5D381A",
   backgroundColor: "#F5F2EE",
@@ -65,15 +74,51 @@ const initialValues: FormValues = {
 
 function ContentManagement() {
   const t = useTranslations("content");
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const [createCenter, { isLoading }] = useCreateCenterMutation();
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          console.log(values.centerName);
+          console.log(values.centerAddress);
+          console.log(userInfo?.id);
+          console.log(values.centerDescription);
+          console.log(userInfo?.token);
+          const res = await createCenter({
+            id: 0,
+            name: values.centerName,
+            address: values.centerAddress,
+            ownerId: userInfo?.id,
+            description: values.centerDescription,
+            token: userInfo?.token,
+          }).unwrap();
+
+          toast.success("center created successfully !", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          console.log("create center response", res);
+        } catch (err) {
+          toast.error("Something went wrong", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       }}
     >
       {({ values }) => (
@@ -92,6 +137,36 @@ function ContentManagement() {
               </p>
             </div>
             <div className="p-[16px] border-solid border-[1px] border-secondary-brown-normal-30-opacity rounded-[10px] flex flex-col gap-[40px]">
+              {/* Color Palette */}
+              <div className="flex flex-col gap-[24px] z-10">
+                <div className="border-b border-b-secondary-brown-normal-30-opacity">
+                  <h1 className="font-poppins capitalize text-[24px] text-secondary-brown-darker font-semibold mb-[10px] ">
+                    your center information
+                  </h1>
+                </div>
+                <div className="flex flex-col  gap-[20px]">
+                  <div className="flex gap-[50px] ">
+                    <CustomField
+                      name={"centerName"}
+                      label="your center name"
+                      placeholder="Enter your center name"
+                    />
+                    <CustomField
+                      name={"centerAddress"}
+                      label="your center address"
+                      placeholder="Enter your center address"
+                    />
+                  </div>
+                  <div className="w-[900px]">
+                    <CustomField
+                      name={"centerDescription"}
+                      label="your center description"
+                      placeholder="Your center description"
+                      textarea
+                    />
+                  </div>
+                </div>
+              </div>
               {/* Color Palette */}
               <div className="flex flex-col gap-[24px] z-10">
                 <div className="border-b border-b-secondary-brown-normal-30-opacity">
