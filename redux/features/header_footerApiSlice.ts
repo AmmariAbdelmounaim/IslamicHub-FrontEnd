@@ -1,9 +1,9 @@
 import { apiSlice } from "./apiSlice";
 
 const HEADERS_FOOTERS_URL = "/api/headerFooter/user";
-export const headers_footersApiSlice = apiSlice.injectEndpoints({
+export const headersFootersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    createHeader_Footer: builder.mutation({
+    createHeaderFooter: builder.mutation({
       query: (data) => ({
         url: `${HEADERS_FOOTERS_URL}/create`,
         method: "POST",
@@ -36,7 +36,51 @@ export const headers_footersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getHeaderFooter: builder.mutation({
+      query: (data) => ({
+        url: `${HEADERS_FOOTERS_URL}/getHeaderFooter/${data.id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
+    }),
+    editHeaderFooter: builder.mutation({
+      query: (data) => ({
+        url: `${HEADERS_FOOTERS_URL}/edit/${data.id}`,
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+        body: {
+          headerBGColor: data.titleColor,
+          headerTextColor: data.textColor,
+          headerAboutUs: data.backgroundColor,
+          headerOurServices: data.primaryColor,
+          headerOurEvents: data.centerId,
+          headerPrayerTime: data.headerPrayerTime,
+          headerTestimonials: data.headerTestimonials,
+          headerContanctUs: data.headerContanctUs,
+          largeLogo: data.largeLogo,
+          smallLogo: data.smallLogo,
+          footerBGColor: data.footerBGColor,
+          footerTextColor: data.footerTextColor,
+          footerFacebook: data.footerFacebook,
+          footerInsta: data.footerInsta,
+          footerTwitter: data.footerTwitter,
+          footerThreads: data.footerThreads,
+          footerEmail: data.footerEmail,
+          footerPhoneNumber: data.footerPhoneNumber,
+          footerAddress: data.footerAddress,
+          footerwtp: data.footerwtp,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useCreateHeader_FooterMutation } = headers_footersApiSlice;
+export const {
+  useCreateHeaderFooterMutation,
+  useEditHeaderFooterMutation,
+  useGetHeaderFooterMutation,
+} = headersFootersApiSlice;

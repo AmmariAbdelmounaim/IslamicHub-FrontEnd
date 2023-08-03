@@ -19,7 +19,54 @@ export const centersApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getAllCenters: builder.mutation({
+      query: (data) => ({
+        url: `${CENTERS_URL}/getAll`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
+    }),
+    getCenter: builder.mutation({
+      query: (data) => ({
+        url: `${CENTERS_URL}/getCenter/${data.id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
+    }),
+    editCenter: builder.mutation({
+      query: (data) => ({
+        url: `${CENTERS_URL}/edit/${data.id}`,
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+        body: {
+          name: data.name,
+          address: data.address,
+          description: data.description,
+        },
+      }),
+    }),
+    deleteCenter: builder.mutation({
+      query: (data) => ({
+        url: `${CENTERS_URL}/delete/${data.id}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useCreateCenterMutation } = centersApiSlice;
+export const {
+  useCreateCenterMutation,
+  useGetAllCentersMutation,
+  useGetCenterMutation,
+  useEditCenterMutation,
+  useDeleteCenterMutation,
+} = centersApiSlice;

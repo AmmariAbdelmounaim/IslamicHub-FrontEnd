@@ -22,7 +22,37 @@ export const homePagesApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getHomePage: builder.mutation({
+      query: (data) => ({
+        url: `${HOMEPAGE_URL}/getHomePage/${data.id}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      }),
+    }),
+    editHomePage: builder.mutation({
+      query: (data) => ({
+        url: `${HOMEPAGE_URL}/edit/${data.id}`,
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+        body: {
+          whoAreWe: data.whoAreWe,
+          ourVision: data.ourVision,
+          eventBorderColor: data.eventBorderColor,
+          eventBgColor: data.eventBgColor,
+          eventAdditionalInfoColor: data.eventAdditionalInfoColor,
+          iconSlidesColor: data.iconSlidesColor,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useCreateHomePageMutation } = homePagesApiSlice;
+export const {
+  useCreateHomePageMutation,
+  useEditHomePageMutation,
+  useGetHomePageMutation,
+} = homePagesApiSlice;
