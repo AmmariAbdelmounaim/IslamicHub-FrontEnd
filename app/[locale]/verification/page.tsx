@@ -2,13 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import FillButton from "../../../components/button/FillButton";
-import {
-  ErrorMessage as FormikErrorMessage,
-  Field,
-  Form,
-  Formik,
-  useFormikContext,
-} from "formik";
+import { ErrorMessage as FormikErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useState, useEffect } from "react";
 import {
@@ -74,7 +68,7 @@ export default function VerificationPage() {
           //store user in local storage
           dispatch(setCredentials({ ...res }));
           window.localStorage.removeItem("formValues");
-          router.push("/authentication/login");
+          router.push("/centerinfo");
         }
       }}
     >
