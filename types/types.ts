@@ -8,5 +8,13 @@ export interface User {
   address: string;
   phoneNumber: string;
   token: string;
+  centerDTO: Center;
   role: string;
+}
+export interface Center {
+  id: number;
+  name: string;
+  address: string;
+  ownerId: number;
+  description: string;
 }
