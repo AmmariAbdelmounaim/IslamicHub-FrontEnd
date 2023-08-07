@@ -8,11 +8,11 @@ import { SketchPicker, ColorResult } from "react-color";
 interface ColorPickerProps<T> {
   name: keyof T;
   label: string;
-  defaultColor: string;
+  defaultColor?: string;
 }
 
 function ColorPicker<T>({ name, label, defaultColor }: ColorPickerProps<T>) {
-  const [color, setColor] = useState<string>(defaultColor);
+  const [color, setColor] = useState<string>(defaultColor as string);
   const [showPicker, setShowPicker] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [, meta, helpers] = useField(name as string);

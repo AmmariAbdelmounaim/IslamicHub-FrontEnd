@@ -17,6 +17,7 @@ export default function CustomCheckBox({ label, name }: CustomCheckBoxProps) {
         name={name}
         value=""
         className="w-4 h-4 text-primary-orange-normal-hover bg-transparent border-gray-300 rounded focus:ring-primary-orange-normal-hover  focus:ring-2 cursor-pointer"
+        checked={field.value}
       />
       <label
         htmlFor={name}
