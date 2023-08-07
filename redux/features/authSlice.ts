@@ -27,6 +27,18 @@ export const authSlice = createSlice({
       }
       localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
     },
+    setTheme: (state, action) => {
+      if (state.userInfo) {
+        state.userInfo.centerDTO.themeDTO = action.payload;
+      }
+      localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
+    },
+    setHeaderFooter: (state, action) => {
+      if (state.userInfo) {
+        state.userInfo.centerDTO.headerFooterDTO = action.payload;
+      }
+      localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
+    },
     logout: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
@@ -34,5 +46,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, setCenter, logout } = authSlice.actions;
+export const { setCredentials, setCenter, setTheme, setHeaderFooter, logout } =
+  authSlice.actions;
 export default authSlice.reducer;
