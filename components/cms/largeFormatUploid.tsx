@@ -13,7 +13,7 @@ export default function LargeFormatUploid<T>({
   smallFormat = false,
 }: LargeFormatUploidProps<T>) {
   const [field, meta, helpers] = useField(name as string);
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(field.value || null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
