@@ -4,6 +4,9 @@ function UpCE() {
   return (
     <div className="flex flex-col gap-[40px] mx-[100px] py-[64px] border-b-[2px] border-b-secondary-brown-light-active ">
       <div className="flex flex-col gap-[56px]">
+      <h1 className="text-primary-orange-darker font-sourceSerif  text-[40px] font-normal flex justify-center items-center  ">
+        Upcoming Events
+      </h1>
         <div className="flex justify-between ">
           <h3 className="text-primary-orange-darker font-sourceSerif text-[32px] font-normal w-[197px] h-[40px] ">
             Jun <br /> 21
