@@ -30,9 +30,9 @@ const initialValues: FormValues = {
       eventTime: "",
     },
   ],
-  borderColor: "#362A1C",
+  borderColor: "#CE7D39",
   backgroundColor: "#F8ECE1",
-  additionalInfoColor: "#CE7D39",
+  additionalInfoColor: "#FAF2EB",
 };
 
 export default function CalendarManagement() {
@@ -67,7 +67,11 @@ export default function CalendarManagement() {
               <h4 className="font-poppins capitalize text-[20px] text-secondary-brown-darker font-semibold">
                 event component example
               </h4>
-              <Event />
+              <Event
+                additionalInfoColor={values.additionalInfoColor}
+                backgroundColor={values.backgroundColor}
+                borderColor={values.borderColor}
+              />
             </div>
             {/* colors */}
             <div className="flex flex-col p-[16px] gap-[40px] rounded-[10px] border-solid border-[1px] border-secondary-brown-normal-30-opacity">
@@ -80,17 +84,17 @@ export default function CalendarManagement() {
                 <ColorPicker<FormValues>
                   label="border color"
                   name={"borderColor"}
-                  defaultColor="#362A1C"
+                  defaultColor={initialValues.borderColor}
                 />
                 <ColorPicker<FormValues>
                   label="background color"
                   name={"backgroundColor"}
-                  defaultColor="#F8ECE1"
+                  defaultColor={initialValues.backgroundColor}
                 />
                 <ColorPicker<FormValues>
                   label="additional info color"
                   name={"additionalInfoColor"}
-                  defaultColor="#CE7D39"
+                  defaultColor={initialValues.additionalInfoColor}
                 />
               </div>
             </div>

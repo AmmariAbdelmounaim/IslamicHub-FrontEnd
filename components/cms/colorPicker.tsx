@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Field, useField } from "formik";
 import { SketchPicker, ColorResult } from "react-color";
-
+import Canvas from "canvas";
 interface ColorPickerProps<T> {
   name: keyof T;
   label: string;
@@ -22,26 +22,24 @@ function ColorPicker<T>({ name, label, defaultColor }: ColorPickerProps<T>) {
     helpers.setValue(chosenColor.hex);
   };
 
-  const handlePickerDisplay = () => {
+  const handlePickerDisplay = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setShowPicker(!showPicker);
   };
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setShowPicker(false);
-      }
-    },
-    [setShowPicker]
-  );
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (ref.current && !ref.current.contains(event.target as Node)) {
+  //       setShowPicker(false);
+  //     }
+  //   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+  //   document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [handleClickOutside]);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [ref]);
 
   return (
     <div className="flex flex-col gap-[24px] items-center justify-center">
@@ -53,23 +51,22 @@ function ColorPicker<T>({ name, label, defaultColor }: ColorPickerProps<T>) {
       </label>
       <div
         onClick={handlePickerDisplay}
-        className="px-[16px] py-[8px] flex items-center justify-between w-[229px] h-[56px] hover:cursor-pointer  border-[2px] border-solid border-secondary-brown-normal rounded-[10px]  relative"
+        className="px-[16px] py-[8px] flex items-center justify-between w-[229px] h-[56px] hover:cursor-pointer  border-[2px] border-solid border-secondary-brown-normal rounded-[10px]  relative "
         ref={ref}
       >
         <div className="px-[16px] py-[14px]">
-          <p className="text-secondary-brown-normal-60-opacity font-poppins text-[16px] font-medium text-center">
+          <p className="text-secondary-brown-normal-60-opacity font-poppins text-[16px] font-medium text-center ">
             {color}
           </p>
         </div>
         <div
-          className={`w-[56px] h-[40px] rounded-[10px] border-[1px] border-secondary-brown-normal bg-[${color}]`}
+          className={`w-[56px] h-[40px] rounded-[10px] border-[1px] border-secondary-brown-normal `}
           style={{ backgroundColor: color }}
         >
           {showPicker && (
-            <div className="absolute top-[56px] right-[0px] ">
+            <div className="absolute top-[56px] right-[0px] z-50 ">
               <SketchPicker
                 disableAlpha={false}
-                width="200px"
                 color={color}
                 onChange={handleChange}
               />
