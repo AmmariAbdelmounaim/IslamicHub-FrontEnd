@@ -9,6 +9,8 @@ import RaisingF from "./RaisingFunds";
 import DonatePage from "./RaisingFNext";
 import Test from "./Testimonials";
 import Event from "../../../components/cms/event";
+import GetInTouchh from "./GetInTouch";
+import Foooter from "./footer";
 
 const PreviewPage = () => {
   return (
@@ -71,6 +73,8 @@ const PreviewPage = () => {
           title="Aisha Rahman"
         />
       </div>
+      <GetInTouchh />
+      <Foooter />
     </>
   );
 };

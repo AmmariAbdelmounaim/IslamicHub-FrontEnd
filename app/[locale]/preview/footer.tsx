@@ -2,29 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface CmsCustomFooterProps {
+interface FooterProps {
   logo?: string;
   facebook?: string;
   instagram?: string;
   twitter?: string;
-  threads?: string;
   email?: string;
   phoneNumber?: string;
   backgroundColor?: string;
   textColor?: string; 
+  threads?: string; 
 }
 
-function CmsCustomFooter({
+function Foooter({
   logo,
   facebook,
   instagram,
   twitter,
-  threads,
   email,
   phoneNumber,
   backgroundColor,
   textColor,
-}: CmsCustomFooterProps) {
+  threads,
+  
+}: FooterProps) {
   return (
     <div
       className="px-[100px] py-[64px] flex flex-col gap-[24px] w-full "
@@ -44,8 +45,8 @@ function CmsCustomFooter({
       </div>
       <div className="flex flex-col gap-[32px] items-center">
         <div className="flex justify-center items-center gap-[24px]">
-          {threads && (
-            <Link href={threads}>
+        {threads && (
+  <Link href={threads}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -135,8 +136,9 @@ function CmsCustomFooter({
           </p>
         </div>
       </div>
+      
     </div>
   );
 }
 
-export default CmsCustomFooter;
+export default Foooter;
