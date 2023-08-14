@@ -26,4 +26,14 @@ export const NavListCms: INavList = [
     path: `/cms/donation`,
     icon: "/navbar/donation_management.svg",
   },
+  {
+    title: "other sections",
+    path: `/cms/other`,
+    icon: "/navbar/other_sections.svg",
+  },
+  {
+    title: "messages",
+    path: "/cms/messages",
+    icon: "/navbar/messages.svg",
+  },
 ];
