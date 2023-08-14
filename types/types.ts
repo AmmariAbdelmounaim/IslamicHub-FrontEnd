@@ -19,6 +19,7 @@ export interface Center {
   description: string;
   themeDTO: Theme;
   headerFooterDTO: HeaderFooter;
+  homePageDTO: HomePage;
 }
 
 export interface Theme {
@@ -52,4 +53,54 @@ export interface HeaderFooter {
   footerAddress: string;
   footerwtp: string;
   centerId: number;
+}
+
+export interface HomePage {
+  id: number;
+  eventAdditionalInfoColor: string;
+  eventBgColor: string;
+  eventBorderColor: string;
+  eventDTOList: Event[];
+  iconSlidesColor: string;
+  slideDTOList: Slide[];
+  serviceDTOList: Service[];
+  testimonialDTOList: Testimonial[];
+  aboutUsDTOList: AboutUs[];
+  centerId: number;
+}
+
+export interface Event {
+  id?: number;
+  name: string;
+  description: string;
+  location: string;
+  startAt: string;
+  endAt: string;
+  homPageId?: number;
+}
+
+export interface Testimonial {
+  id?: number;
+  image: Slide[];
+  userName: string;
+  comment: string;
+  homePageId?: number;
+}
+
+export interface AboutUs {
+  id?: number;
+  title: string;
+  paragraph: string;
+  homePageId?: number;
+}
+export interface Service {
+  id?: number;
+  name: string;
+  description: string;
+  homPageId?: number;
+}
+export interface Slide {
+  id?: number;
+  image: string;
+  homePageId?: number;
 }
