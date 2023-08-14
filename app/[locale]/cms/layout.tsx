@@ -1,12 +1,27 @@
 "use client";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useAppSelector } from "../../../redux/store";
 import { useRouter } from "next/navigation";
 import CsmSidebar from "../../../components/cmsNavbar/sidebar";
 import CmsHeader from "../../../components/cmsNavbar/header";
+import PreviewPage from "../preview/page";
+import { Reveal } from "../../../components/animations/Reveal";
 
 export default function CmsLayout({ children }: { children: ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+
+  const handlePreviewToggle = () => {
+    setIsPreviewVisible(!isPreviewVisible);
+  };
+  const router = useRouter();
+  const { userInfo } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!userInfo) {
+      router.push("/authentication/login");
+    }
+  }, [userInfo, router]);
 
   const handleSidebarToggle = () => {
     setIsCollapsed(!isCollapsed);
@@ -26,7 +41,7 @@ export default function CmsLayout({ children }: { children: ReactNode }) {
           isCollapsed ? "pl-[80px]" : "pl-[312px]"
         }`}
       >
-        <CmsHeader />
+        <CmsHeader onPreviewToggle={handlePreviewToggle} />
       </nav>
       <div
         className={`pt-[120px] pr-[32px] z-20 h-full transition-all duration-300 ${
@@ -34,6 +49,9 @@ export default function CmsLayout({ children }: { children: ReactNode }) {
         }`}
       >
         {children}
+      </div>
+      <div className="z-50">
+        {isPreviewVisible && <PreviewPage onClose={handlePreviewToggle} />}
       </div>
     </>
   );
