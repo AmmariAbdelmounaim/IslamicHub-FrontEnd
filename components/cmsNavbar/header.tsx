@@ -4,11 +4,13 @@ import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useRouter } from "next/navigation";
 import { logout } from "../../redux/features/authSlice";
 import { User } from "../../types/types";
+import FillButton from "../button/FillButton";
 
-const CmsHeader = () => {
+const CmsHeader = ({ onPreviewToggle }: { onPreviewToggle: () => void }) => {
   const [userInfo, setUserInfo] = useState<User>();
   const router = useRouter();
   const dispatch = useAppDispatch();
+
   const [toggleUserDropdown, setToggleUserDropDown] = useState<boolean>(false);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -44,17 +46,21 @@ const CmsHeader = () => {
       <h1 className="font-sourceSerif text-center text-[28px] font-semibold capitalize">
         Welcome back {userInfo?.firstname} !
       </h1>
-      <button
-        className="rounded-full p-[10px] bg-transparent border-solid border-[2px] border-primary-orange-normal w-[64px] h-[64px] flex items-center justify-center font-poppins uppercase text-[20px] font-semibold text-secondary-brown-darker hover:bg-primary-orange-light-hover"
-        onClick={() => {
-          setToggleUserDropDown(!toggleUserDropdown);
-        }}
-        ref={buttonRef}
-      >
-        {" "}
-        {userInfo?.firstname ? userInfo.firstname.charAt(0) : ""}
-        {userInfo?.lastname ? userInfo.firstname.charAt(0) : ""}
-      </button>
+      <div className="flex gap-[20px]">
+        <FillButton onClick={onPreviewToggle}>Preview</FillButton>
+        <button
+          className="rounded-full p-[10px] bg-transparent border-solid border-[2px] border-primary-orange-normal w-[64px] h-[64px] flex items-center justify-center font-poppins uppercase text-[20px] font-semibold text-secondary-brown-darker hover:bg-primary-orange-light-hover"
+          onClick={() => {
+            setToggleUserDropDown(!toggleUserDropdown);
+          }}
+          ref={buttonRef}
+        >
+          {" "}
+          {userInfo?.firstname ? userInfo.firstname.charAt(0) : ""}
+          {userInfo?.lastname ? userInfo.lastname.charAt(0) : ""}
+        </button>
+      </div>
+
       <div
         className={`z-40  ${
           toggleUserDropdown ? "fixed top-[70px] right-[12px]" : "hidden"
