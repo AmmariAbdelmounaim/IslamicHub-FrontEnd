@@ -45,7 +45,7 @@ export default function CmsCustomNavbar({
       >
         {logo ? (
           <div className="py-[8px] w-auto ">
-            <Image src={logo} alt="logo" height={73} width={118} />
+            <Image src={logo} alt="logo" height={73} width={73} />
           </div>
         ) : (
           <div className="py-[8px] w-auto h-[73px] flex items-center justify-center">
