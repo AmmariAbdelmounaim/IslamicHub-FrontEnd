@@ -4,17 +4,20 @@ import FillButton from "../button/FillButton";
 import { CustomField } from "../formInputs/customField";
 import DatePicker from "./datePicker";
 import { FieldArrayRenderProps } from "formik";
+import { Event } from "../../types/types";
 
 export default function EventCard({
   title,
   index,
   withoutBorder = false,
   arrayHelpers,
+  event,
 }: {
   title: string;
   index: number;
   withoutBorder?: boolean;
   arrayHelpers: FieldArrayRenderProps;
+  event: Event;
 }) {
   return (
     <div
@@ -32,12 +35,14 @@ export default function EventCard({
             label="event name"
             placeholder="Enter The Name Of Your Event"
             cms
-            name={`events.${index}.eventName`}
+            name={`events[${index}].name`}
+            value={event.name}
           />
           <DatePicker
-            label="event date"
-            placeholder="Enter The Date of Your Event"
-            name={`events.${index}.eventDate`}
+            label="event start time"
+            placeholder="Enter The Start Date of Your Event"
+            name={`events[${index}].startAt`}
+            value={event.startAt}
           />
         </div>
         <div className="flex gap-[64px]">
@@ -45,13 +50,15 @@ export default function EventCard({
             label="event location"
             placeholder="Enter The Location Of Your Event"
             cms
-            name={`events.${index}.eventLocation`}
+            value={event.location}
+            name={`events[${index}].location`}
           />
-          <CustomField
-            label="event time"
-            placeholder="Enter The Time Of Your Event"
-            cms
-            name={`events.${index}.eventTime`}
+          <DatePicker
+            label="event end time"
+            placeholder="Enter The End Date of Your Event"
+            name={`events[${index}].endAt`}
+            value={event.endAt}
+            timeOnly
           />
         </div>
         <div className="flex items-center justify-center">
@@ -60,7 +67,8 @@ export default function EventCard({
             placeholder="Event Description"
             cms
             textarea
-            name={`events.${index}.eventDescription`}
+            value={event.description}
+            name={`events[${index}].description`}
           />
         </div>
         <div
@@ -75,7 +83,8 @@ export default function EventCard({
           >
             <FillButton
               additionalStyle="pt-[12px] px-[40px] gap-[10px]"
-              onClick={() => arrayHelpers.remove(index)}
+              onClick={() => arrayHelpers.remove(event.id as number)}
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
