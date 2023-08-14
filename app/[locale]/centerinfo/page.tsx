@@ -7,14 +7,15 @@ import FillButton from "../../../components/button/FillButton";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { useCreateCenterMutation } from "../../../redux/features/centersApiSlice";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { Theme, toast } from "react-toastify";
 import {
   setCenter,
   setCredentials,
   setHeaderFooter,
+  setHomePage,
   setTheme,
 } from "../../../redux/features/authSlice";
-import { Center, HeaderFooter } from "../../../types/types";
+import { Center, HeaderFooter, HomePage } from "../../../types/types";
 import { useCreateThemeMutation } from "../../../redux/features/themeApiSlice";
 import { useCreateHeaderFooterMutation } from "../../../redux/features/header_footerApiSlice";
 import { useCreateHomePageMutation } from "../../../redux/features/homePageApiSlice";
@@ -49,7 +50,6 @@ function CenterInfo() {
   const [createTheme] = useCreateThemeMutation();
   const [createHeaderFooter] = useCreateHeaderFooterMutation();
   const [createHomePage] = useCreateHomePageMutation();
-  const [createEvent] = useCreateEventMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -79,11 +79,12 @@ function CenterInfo() {
             textColor: "#5D381A",
             backgroundColor: "#F5F2EE",
             primaryColor: "#CE7D39",
-            centerId: userInfo?.centerDTO.id,
+            centerId: res.id,
             token: userInfo?.token,
           }).unwrap();
-          console.log("theme response: ", { ...themeRes });
+
           dispatch(setTheme({ ...themeRes }));
+          console.log("theme response: ", { ...themeRes });
           const headerFooterRes = await createHeaderFooter({
             id: 0,
             headerBGColor: "#9B5E2B",
@@ -106,7 +107,7 @@ function CenterInfo() {
             footerPhoneNumber: null,
             footerAddress: null,
             footerwtp: null,
-            centerId: userInfo?.centerDTO.id,
+            centerId: res.id,
             token: userInfo?.token,
           });
           if ("data" in headerFooterRes) {
@@ -126,11 +127,17 @@ function CenterInfo() {
             eventBgColor: "#F8ECE1",
             eventAdditionalInfoColor: "#FAF2EB",
             iconSlidesColor: "#997950",
-            centerId: userInfo?.centerDTO.id,
+            centerId: res.id,
+            eventDTOList: [],
+            slideDTOList: [],
             token: userInfo?.token,
           });
-          console.log("home page response: ", { ...homePageRes });
-          dispatch(setTheme({ ...homePageRes }));
+          if ("data" in homePageRes) {
+            console.log("home page response :", homePageRes.data as HomePage);
+            dispatch(setHomePage({ ...(homePageRes.data as HomePage) }));
+          } else if ("error" in homePageRes) {
+            console.error("Error:", homePageRes.error);
+          }
 
           toast.success(`${values.IslamicCenterName} is created successfuly !`);
 
