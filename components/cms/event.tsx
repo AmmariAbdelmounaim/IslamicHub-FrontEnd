@@ -71,7 +71,7 @@ export default function Event({
               }}
               className="font-poppins text-[20px] font-semibold  capitalize text-secondary-brown-normal"
             >
-              {eventTime ? eventName : "event time"}
+              {eventTime ?? "event time"}
             </p>
           </div>
           <div className="flex gap-[16px]">
