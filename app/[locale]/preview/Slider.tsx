@@ -54,16 +54,7 @@ function SliderImage() {
         <div className="h-full w-full">
           <Image
             src="/assets/heroimg.jpg"
-            alt="Photo 2"
-            className="w-full"
-            width={1000}
-            height={800}
-          />
-        </div>
-        <div className="h-full w-full">
-          <Image
-            src="/assets/heroimg.jpg"
-            alt="Photo 3"
+            alt="Photo 1"
             className="w-full"
             width={1000}
             height={800}
