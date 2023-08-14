@@ -2,8 +2,10 @@ import { useField } from "formik";
 import React, { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
+import { Slide } from "../../types/types";
 interface SliderProps<T> {
   name: keyof T;
+  slides?: Slide[];
   uploidLimit?: number;
   label?: string;
 }
@@ -12,9 +14,12 @@ function Slider<T>({
   name,
   label = "upload images for your slider",
   uploidLimit = 5,
+  slides = [],
 }: SliderProps<T>) {
   const [field, meta, helpers] = useField(name as string);
-  const [previews, setPreviews] = useState<Array<string>>([]);
+  const [previews, setPreviews] = useState<Array<string>>(
+    slides.map((slide) => slide.image)
+  );
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -28,12 +33,20 @@ function Slider<T>({
         return;
       }
 
-      helpers.setValue([...existingFiles, ...acceptedFiles]);
+      let newPreviews: string[] = [];
+      let loadedFiles = 0;
 
-      acceptedFiles.map((file) => {
+      acceptedFiles.forEach((file) => {
         const reader = new FileReader();
         reader.onloadend = () => {
-          setPreviews((prevState) => [...prevState, reader.result as string]);
+          newPreviews.push(reader.result as string);
+          loadedFiles += 1;
+
+          if (loadedFiles === acceptedFiles.length) {
+            // All files have been read
+            setPreviews((prevState) => [...prevState, ...newPreviews]);
+            helpers.setValue([...existingFiles, ...newPreviews]);
+          }
         };
         reader.readAsDataURL(file);
       });
@@ -106,6 +119,7 @@ function Slider<T>({
               </div>
               <button
                 className="absolute top-[-10px] right-[-10px] bg-primary-orange-normal hover:bg-primary-orange-normal-hover text-white rounded-full w-6 h-6 flex justify-center items-center"
+                type="button"
                 onClick={() => {
                   // Create new arrays without the selected image/file
                   const newPreviews = [...previews];
