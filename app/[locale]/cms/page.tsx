@@ -1,18 +1,16 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAppSelector } from "../../../redux/store";
+import { useRouter } from "next/navigation";
+
 function CmsPage() {
-  const router = useRouter();
   const { userInfo } = useAppSelector((state) => state.auth);
+  const router = useRouter();
   useEffect(() => {
     if (userInfo) {
       router.push("/cms/content");
-    } else {
-      router.push("/authentication/login");
     }
   }, [userInfo, router]);
-
   return <></>;
 }
 
