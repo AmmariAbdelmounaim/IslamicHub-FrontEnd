@@ -11,16 +11,9 @@ import CmsCustomFooter from "../../../../components/cms/cmsFooter";
 import { useCreateCenterMutation } from "../../../../redux/features/centersApiSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/store";
 import { toast } from "react-toastify";
+import { useEditThemeMutation } from "../../../../redux/features/themeApiSlice";
+import { useEditHeaderFooterMutation } from "../../../../redux/features/header_footerApiSlice";
 import {
-  useCreateThemeMutation,
-  useEditThemeMutation,
-} from "../../../../redux/features/themeApiSlice";
-import {
-  useCreateHeaderFooterMutation,
-  useEditHeaderFooterMutation,
-} from "../../../../redux/features/header_footerApiSlice";
-import {
-  setCredentials,
   setHeaderFooter,
   setTheme,
 } from "../../../../redux/features/authSlice";
@@ -53,33 +46,6 @@ interface FormValues {
   address: string;
   whatsapp: string;
 }
-
-// const themeDefaults = {
-//   titleColor: "#555555",
-//   textColor: "#5D381A",
-//   backgroundColor: "#F5F2EE",
-//   primaryColor: "#CE7D39",
-//   largeUploid: null,
-//   smallUploid: null,
-//   backgroundColorHeader: "#9B5E2B",
-//   textColorHeader: "#F5F2EE",
-//   aboutUs: false,
-//   ourServices: false,
-//   ourEvents: false,
-//   prayerTime: false,
-//   testimonials: false,
-//   contactUs: false,
-//   backgroundColorFooter: "#482C14",
-//   textColorFooter: "#F5F2EE",
-//   facebookLink: "",
-//   instagramLink: "",
-//   twitterLink: "",
-//   threadsLink: "",
-//   email: "",
-//   phoneNumber: "",
-//   address: "",
-//   whatsapp: "",
-// };
 
 function ContentManagement() {
   const t = useTranslations("content");
@@ -178,6 +144,7 @@ function ContentManagement() {
           }}
           onSubmit={async (values, { setSubmitting }) => {
             try {
+              console.log("values: ", values);
               const themeRes = await editTheme({
                 id: userInfo?.centerDTO.themeDTO.id,
                 titleColor: values.titleColor,
