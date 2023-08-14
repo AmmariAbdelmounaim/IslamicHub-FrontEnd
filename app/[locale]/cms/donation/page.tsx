@@ -5,35 +5,36 @@ import { CustomField } from "../../../../components/formInputs/customField";
 import Slider from "../../../../components/cms/slider";
 import FillButton from "../../../../components/button/FillButton";
 import { useTranslations } from "next-intl";
+import { useAppDispatch, useAppSelector } from "../../../../redux/store";
 
 interface FormValues {
-  favoriteColor: string;
   donationReason: string;
   encouragingText: string;
-  dollarsAmount: string;
-  donationImage: File | null;
-  firstAmount: string;
-  secondAmount: string;
-  thirdAmount: string;
-  fourthAmount: string;
-  fifthAmount: string;
+  dollarsAmount: number;
+  donationImage: string | null;
+  firstAmount: number;
+  secondAmount: number;
+  thirdAmount: number;
+  fourthAmount: number;
+  fifthAmount: number;
 }
 
-const initialValues: FormValues = {
-  favoriteColor: "#ffffff",
-  donationReason: "",
-  encouragingText: "",
-  dollarsAmount: "",
-  donationImage: null,
-  firstAmount: "",
-  secondAmount: "",
-  thirdAmount: "",
-  fourthAmount: "",
-  fifthAmount: "",
-};
 function DonationManagement() {
   const t = useTranslations("donation");
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
+  const initialValues: FormValues = {
+    donationReason: "",
+    encouragingText: "",
+    dollarsAmount: 0,
+    donationImage: null,
+    firstAmount: 0,
+    secondAmount: 0,
+    thirdAmount: 0,
+    fourthAmount: 0,
+    fifthAmount: 0,
+  };
   return (
     <Formik
       initialValues={initialValues}
