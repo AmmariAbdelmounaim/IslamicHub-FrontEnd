@@ -3,10 +3,14 @@ import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { CustomField } from "../../../../../components/formInputs/customField";
 import FillButton from "../../../../../components/button/FillButton";
+import Select from "../../../../../components/formInputs/select";
 interface FormValues {
   country: string;
   city: string;
   state: string;
+  highLatitude: number;
+  prayer: number;
+  asar: number;
 }
 function PrayerTimeSection() {
   const [isClient, setIsClient] = useState(false);
@@ -14,6 +18,9 @@ function PrayerTimeSection() {
     country: "",
     city: "",
     state: "",
+    highLatitude: 0,
+    prayer: 0,
+    asar: 0,
   };
   useEffect(() => {
     setIsClient(true);
@@ -44,22 +51,67 @@ function PrayerTimeSection() {
                   </h1>
                   <div className="flex flex-col gap-[64px] items-center">
                     <div className="flex gap-[64px] justify-between">
-                      <CustomField
-                        name="counry"
-                        label="Country"
-                        placeholder="Enter the name of the country"
-                      />
-                      <CustomField
-                        name="city"
-                        label="city"
-                        placeholder="Enter the name of the city"
+                      <div className="w-[420px]">
+                        <CustomField
+                          name="counry"
+                          label="Country"
+                          placeholder="Enter the name of the country"
+                        />
+                      </div>
+                      <div className="w-[420px]">
+                        <CustomField
+                          name="city"
+                          label="city"
+                          placeholder="Enter the name of the city"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex gap-[64px] justify-between">
+                      <div className="w-[420px]">
+                        <CustomField
+                          name={"state"}
+                          label="state"
+                          placeholder="Enter the name of your state"
+                        />
+                      </div>
+
+                      <Select
+                        name="highLatitude"
+                        label="high latitude method"
+                        options={[
+                          { key: "Angle Based", value: 3 },
+                          { key: "Middle of the Night", value: 1 },
+                          { key: "One Seventh", value: 2 },
+                        ]}
                       />
                     </div>
-                    <div className="flex justify-center">
-                      <CustomField
-                        name={"state"}
-                        label="state"
-                        placeholder="Enter the name of your state"
+                    <div className="flex gap-[64px] justify-between">
+                      <Select
+                        name="prayer"
+                        label="prayer method"
+                        options={[
+                          { key: "Muslim World League", value: 3 },
+                          {
+                            key: "Egyptian General Authority of Survey",
+                            value: 5,
+                          },
+                          {
+                            key: " Islamic Society of North America",
+                            value: 2,
+                          },
+                          {
+                            key: " University of Islamic Sciences",
+                            value: 1,
+                          },
+                        ]}
+                      />
+                      <Select
+                        name="asar"
+                        label="asar method"
+                        options={[
+                          { key: "Shafi", value: 0 },
+                          { key: "Hanafi", value: 1 },
+                        ]}
                       />
                     </div>
                   </div>
