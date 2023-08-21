@@ -20,6 +20,7 @@ export const homePagesApiSlice = apiSlice.injectEndpoints({
           serviceDTOList: data.serviceDTOList,
           testimonialDTOList: data.testimonialDTOList,
           aboutUsDTOList: data.aboutUsDTOList,
+          prayerDTO: data.prayerDTO,
           centerId: data.centerId,
         },
       }),

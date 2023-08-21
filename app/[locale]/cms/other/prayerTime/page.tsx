@@ -4,23 +4,38 @@ import React, { useEffect, useState } from "react";
 import { CustomField } from "../../../../../components/formInputs/customField";
 import FillButton from "../../../../../components/button/FillButton";
 import Select from "../../../../../components/formInputs/select";
+import { CustomSelectField } from "../../../../../components/formInputs/customSelectField";
+import { validationSchemaPrayerTime } from "../../../../../components/authentication/validationSchema";
+import { useEditHomePageMutation } from "../../../../../redux/features/homePageApiSlice";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/store";
+import {
+  useCreatePrayerMutation,
+  useEditPrayerMutation,
+} from "../../../../../redux/features/prayerApiSlice";
+import { toast } from "react-toastify";
+import { setPrayer } from "../../../../../redux/features/authSlice";
+
 interface FormValues {
   country: string;
   city: string;
-  state: string;
+  state?: string;
   highLatitude: number;
   prayer: number;
   asar: number;
 }
 function PrayerTimeSection() {
   const [isClient, setIsClient] = useState(false);
+  const [editHomePage] = useEditHomePageMutation();
+  const [editPrayer] = useEditPrayerMutation();
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
   const initialValues: FormValues = {
-    country: "",
-    city: "",
-    state: "",
-    highLatitude: 0,
-    prayer: 0,
-    asar: 0,
+    country: userInfo?.centerDTO.homePageDTO.prayerDTO.country ?? "",
+    city: userInfo?.centerDTO.homePageDTO.prayerDTO.city ?? "",
+    highLatitude: userInfo?.centerDTO.homePageDTO.prayerDTO.highLatitude ?? 1,
+    prayer: userInfo?.centerDTO.homePageDTO.prayerDTO.prayer ?? 1,
+    asar: userInfo?.centerDTO.homePageDTO.prayerDTO.asar ?? 1,
   };
   useEffect(() => {
     setIsClient(true);
@@ -39,8 +54,33 @@ function PrayerTimeSection() {
           </div>
           <Formik
             initialValues={initialValues}
-            onSubmit={(values) => {
-              console.log(values);
+            validationSchema={validationSchemaPrayerTime}
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                const prayerRes = await editPrayer({
+                  id: userInfo?.centerDTO.homePageDTO.prayerDTO.id,
+                  country: values.country,
+                  city: values.city,
+                  state: values.state,
+                  highLatitude: values.highLatitude,
+                  prayer: values.prayer,
+                  asar: values.asar,
+                  token: userInfo?.token,
+                }).unwrap();
+                console.log("prayer response: ", { ...prayerRes });
+                dispatch(setPrayer({ ...prayerRes }));
+              } catch (err) {
+                toast.error("Something went wrong", {
+                  position: "bottom-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+              }
             }}
           >
             {({ values, initialValues }) => (
@@ -52,11 +92,7 @@ function PrayerTimeSection() {
                   <div className="flex flex-col gap-[64px] items-center">
                     <div className="flex gap-[64px] justify-between">
                       <div className="w-[420px]">
-                        <CustomField
-                          name="counry"
-                          label="Country"
-                          placeholder="Enter the name of the country"
-                        />
+                        <CustomSelectField name="country" label="Country" />
                       </div>
                       <div className="w-[420px]">
                         <CustomField
@@ -117,7 +153,10 @@ function PrayerTimeSection() {
                   </div>
                 </div>
                 <div className="flex mt-[40px] items-center justify-center">
-                  <FillButton additionalStyle="px-[40px] py-[12px] flex gap-[12px]">
+                  <FillButton
+                    additionalStyle="px-[40px] py-[12px] flex gap-[12px]"
+                    type="submit"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

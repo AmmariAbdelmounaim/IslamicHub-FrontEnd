@@ -28,3 +28,8 @@ export const validationSchemaLoginForm = Yup.object({
   email: Yup.string().required("Email is required"),
   password: Yup.string().required("Password is required"),
 });
+
+export const validationSchemaPrayerTime = Yup.object({
+  country: Yup.string().required("Country is required"),
+  city: Yup.string().required("City is required"),
+});

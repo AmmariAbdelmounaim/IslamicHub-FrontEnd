@@ -13,13 +13,15 @@ import {
   setCredentials,
   setHeaderFooter,
   setHomePage,
+  setPrayer,
   setTheme,
 } from "../../../redux/features/authSlice";
-import { Center, HeaderFooter, HomePage } from "../../../types/types";
+import { Center, HeaderFooter, HomePage, Prayer } from "../../../types/types";
 import { useCreateThemeMutation } from "../../../redux/features/themeApiSlice";
 import { useCreateHeaderFooterMutation } from "../../../redux/features/header_footerApiSlice";
 import { useCreateHomePageMutation } from "../../../redux/features/homePageApiSlice";
 import { useCreateEventMutation } from "../../../redux/features/eventApiSlice";
+import { useCreatePrayerMutation } from "../../../redux/features/prayerApiSlice";
 
 interface FormValues {
   IslamicCenterName: string;
@@ -50,6 +52,7 @@ function CenterInfo() {
   const [createTheme] = useCreateThemeMutation();
   const [createHeaderFooter] = useCreateHeaderFooterMutation();
   const [createHomePage] = useCreateHomePageMutation();
+  const [createPrayer] = useCreatePrayerMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -130,11 +133,37 @@ function CenterInfo() {
             centerId: res.id,
             eventDTOList: [],
             slideDTOList: [],
+            prayerDTO: null,
             token: userInfo?.token,
           });
           if ("data" in homePageRes) {
             console.log("home page response :", homePageRes.data as HomePage);
             dispatch(setHomePage({ ...(homePageRes.data as HomePage) }));
+          } else if ("error" in homePageRes) {
+            console.error("Error:", homePageRes.error);
+          }
+
+          if ("data" in homePageRes) {
+            console.log("home page response:", homePageRes.data as HomePage);
+            dispatch(setHomePage({ ...(homePageRes.data as HomePage) }));
+
+            const prayerRes = await createPrayer({
+              id: 0,
+              country: "",
+              city: "",
+              state: "",
+              highLatitude: 1,
+              prayer: 1,
+              asar: 1,
+              token: userInfo?.token,
+              homePageId: homePageRes.data.id,
+            });
+            if ("data" in prayerRes) {
+              console.log("prayer time response :", prayerRes.data as Prayer);
+              dispatch(setPrayer({ ...(prayerRes.data as Prayer) }));
+            } else if ("error" in prayerRes) {
+              console.error("Error:", prayerRes.error);
+            }
           } else if ("error" in homePageRes) {
             console.error("Error:", homePageRes.error);
           }

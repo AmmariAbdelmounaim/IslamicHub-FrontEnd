@@ -66,6 +66,7 @@ export interface HomePage {
   serviceDTOList: Service[];
   testimonialDTOList: Testimonial[];
   aboutUsDTOList: AboutUs[];
+  prayerDTO: Prayer;
   centerId: number;
 }
 
@@ -102,5 +103,15 @@ export interface Service {
 export interface Slide {
   id?: number;
   image: string;
+  homePageId?: number;
+}
+export interface Prayer {
+  id?: number;
+  country: string;
+  city: string;
+  state?: string;
+  highLatitude: number;
+  prayer: number;
+  asar: number;
   homePageId?: number;
 }

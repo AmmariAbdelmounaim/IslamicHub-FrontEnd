@@ -46,6 +46,13 @@ export const authSlice = createSlice({
       }
       localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
     },
+    setPrayer: (state, action) => {
+      if (state.userInfo) {
+        state.userInfo.centerDTO.homePageDTO.prayerDTO = action.payload;
+      }
+      localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
+    },
+
     setEvent: (state, action) => {
       if (state.userInfo) {
         state.userInfo.centerDTO.homePageDTO.eventDTOList.push(action.payload);
@@ -240,5 +247,6 @@ export const {
   setAboutUs,
   removeAboutUs,
   updateAboutUs,
+  setPrayer,
 } = authSlice.actions;
 export default authSlice.reducer;
