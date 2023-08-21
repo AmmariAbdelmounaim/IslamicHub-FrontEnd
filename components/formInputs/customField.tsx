@@ -45,7 +45,6 @@ export function CustomField<T>({
       >
         {label}
       </label>
-      <ErrorMessage name={name as string} />
       <Field
         as={textarea ? "textarea" : "input"}
         type={textarea ? undefined : type} // avoid passing type to textarea
@@ -53,6 +52,7 @@ export function CustomField<T>({
         placeholder={placeholder}
         className={fieldClassNames}
       />
+      <ErrorMessage name={name as string} />
     </div>
   );
 }
