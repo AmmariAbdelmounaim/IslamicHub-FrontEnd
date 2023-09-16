@@ -67,7 +67,16 @@ function PrayerTimeSection() {
                   asar: values.asar,
                   token: userInfo?.token,
                 }).unwrap();
-                console.log("prayer response: ", { ...prayerRes });
+                toast.success("Prayer time has being updated", {
+                  position: "bottom-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
                 dispatch(setPrayer({ ...prayerRes }));
               } catch (err) {
                 toast.error("Something went wrong", {
