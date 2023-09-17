@@ -14,14 +14,22 @@ import {
   setHeaderFooter,
   setHomePage,
   setPrayer,
+  setPrayerTime,
   setTheme,
 } from "../../../redux/features/authSlice";
-import { Center, HeaderFooter, HomePage, Prayer } from "../../../types/types";
+import {
+  Center,
+  HeaderFooter,
+  HomePage,
+  Prayer,
+  PrayerTime,
+} from "../../../types/types";
 import { useCreateThemeMutation } from "../../../redux/features/themeApiSlice";
 import { useCreateHeaderFooterMutation } from "../../../redux/features/header_footerApiSlice";
 import { useCreateHomePageMutation } from "../../../redux/features/homePageApiSlice";
 import { useCreateEventMutation } from "../../../redux/features/eventApiSlice";
 import { useCreatePrayerMutation } from "../../../redux/features/prayerApiSlice";
+import { useGetPrayerTimeMutation } from "../../../redux/features/prayerTimeApiSlice";
 
 interface FormValues {
   IslamicCenterName: string;
@@ -53,8 +61,28 @@ function CenterInfo() {
   const [createHeaderFooter] = useCreateHeaderFooterMutation();
   const [createHomePage] = useCreateHomePageMutation();
   const [createPrayer] = useCreatePrayerMutation();
+  const [getPrayerTime] = useGetPrayerTimeMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  let prayerTimeData: PrayerTime = {
+    fajr: "",
+    shuruq: "",
+    zohar: "",
+    asar: "",
+    maghrib: "",
+    isha: "",
+    day: "",
+    year: "",
+    month: "",
+  };
+  let prayerData: Prayer = {
+    asar: 0,
+    city: "",
+    country: "",
+    highLatitude: 0,
+    prayer: 0,
+    prayerTime: prayerTimeData,
+  };
 
   useEffect(() => {
     if (!userInfo) {
@@ -144,23 +172,48 @@ function CenterInfo() {
           }
 
           if ("data" in homePageRes) {
-            console.log("home page response:", homePageRes.data as HomePage);
-            dispatch(setHomePage({ ...(homePageRes.data as HomePage) }));
+            const prayerTimeRes = await getPrayerTime({
+              city: "agadir",
+              country: "morocco",
+              method: 3,
+              school: 0,
+              latitudeAdjustmentMethod: 1,
+            });
+            if ("data" in prayerTimeRes) {
+              prayerTimeData.fajr = prayerTimeRes.data.data.timings.Fajr;
+              prayerTimeData.shuruq = prayerTimeRes.data.data.timings.Sunrise;
+              prayerTimeData.zohar = prayerTimeRes.data.data.timings.Dhuhr;
+              prayerTimeData.asar = prayerTimeRes.data.data.timings.Asr;
+              prayerTimeData.maghrib = prayerTimeRes.data.data.timings.Maghrib;
+              prayerTimeData.isha = prayerTimeRes.data.data.timings.Isha;
+              prayerTimeData.day = prayerTimeRes.data.data.date.hijri.day;
+              prayerTimeData.year = prayerTimeRes.data.data.date.hijri.year;
+              prayerTimeData.month =
+                prayerTimeRes.data.data.date.hijri.month.en;
+              console.log("prayer time data: ", prayerTimeData);
+            } else if ("error" in prayerTimeRes) {
+              console.error("Error:", prayerTimeRes.error);
+            }
 
             const prayerRes = await createPrayer({
               id: 0,
-              country: "",
-              city: "",
+              country: "morocco",
+              city: "agadir",
               state: "",
               highLatitude: 1,
-              prayer: 1,
-              asar: 1,
+              prayer: 3,
+              asar: 0,
               token: userInfo?.token,
               homePageId: homePageRes.data.id,
             });
             if ("data" in prayerRes) {
-              console.log("prayer time response :", prayerRes.data as Prayer);
-              dispatch(setPrayer({ ...(prayerRes.data as Prayer) }));
+              prayerData = { ...prayerRes.data };
+              prayerData.prayerTime = prayerTimeData;
+              dispatch(
+                setPrayer({
+                  ...(prayerData as Prayer),
+                })
+              );
             } else if ("error" in prayerRes) {
               console.error("Error:", prayerRes.error);
             }
