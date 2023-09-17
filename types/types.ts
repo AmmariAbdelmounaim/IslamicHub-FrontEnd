@@ -111,7 +111,19 @@ export interface Prayer {
   city: string;
   state?: string;
   highLatitude: number;
-  prayer: number;
-  asar: number;
+  prayer: number; //method
+  asar: number; //school
+  prayerTime: PrayerTime;
   homePageId?: number;
+}
+export interface PrayerTime {
+  fajr: string;
+  shuruq: string;
+  zohar: string;
+  asar: string;
+  maghrib: string;
+  isha: string;
+  day: string;
+  month: string;
+  year: string;
 }
