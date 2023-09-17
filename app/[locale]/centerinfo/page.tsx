@@ -7,18 +7,15 @@ import FillButton from "../../../components/button/FillButton";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { useCreateCenterMutation } from "../../../redux/features/centersApiSlice";
 import { useRouter } from "next/navigation";
-import { Theme, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   setCenter,
-  setCredentials,
   setHeaderFooter,
   setHomePage,
   setPrayer,
-  setPrayerTime,
   setTheme,
 } from "../../../redux/features/authSlice";
 import {
-  Center,
   HeaderFooter,
   HomePage,
   Prayer,
