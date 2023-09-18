@@ -1,20 +1,20 @@
 {
   "Index": {
-    "title": "Welcome User Title"
+    "title": "Welcome User Title",
+    "soustitre" : "Start with a warm greeting, Start with a warm greeting Start with a warm greeting",
+    "button1": "Start now",
+    "title2":"Our Story",
+    "soustitre2" :"Introducing IslamicHub, a cutting-edge platform designed to revolutionize the way Islamic Centers manage their online presence. Instead of the lengthy and expensive process of setting up individual websites, IslamicHub offers a unique, central platform for these institutions to generate and share their content.",
+    "title3" :"We Value",
+    "soustitre31" : "Community",
+    "soustitre32" : "Introducing IslamicHub, a cutting-edge platform designed to " ,
+    "title4":"Our Services",
+    "soustitre4":"Showcase the diverse range of services, programs, and activities offered by the Islamic center.Showcase the diverse range of services, programs, and activities offered by the Islamic center.",
+    "soustitre41" :"Create customized website",
+    "soustitre42" : "Introducing IslamicHub, a cutting-edge platform designed to "
+
+
   },
-  "SignIn": {
-    "password": "password"
-  },
-  "LocaleLayout": {
-    "title": ""
-  },
-  "calendar": {},
-  "content": {},
-  "donation": {},
-  "gallery": {},
-  "pricing": {},
-  "verification": {},
-  "welcome": {},
 
   "LocaleSwitcher": {
     "label": "Change language",

@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 export default function LandingPage() {
   const [domLoaded, setDomLoaded] = useState(false);
   const t = useTranslations("Index");
+  
 
   useEffect(() => {
     setDomLoaded(true);
@@ -35,11 +36,10 @@ export default function LandingPage() {
                     </h1>
                   </div>
                   <p className="capitalize text-primary-orange-dark-hover font-poppins text-[18px] sm:text-[20px] sm:font-semibold">
-                    Start with a warm greeting, Start with a warm greeting Start
-                    with a warm greeting
+                  {t("soustitre")}
                   </p>
                   <FillButton additionalStyle="capitalize py-[16px] px-[40px] w-[247px] h-[45px] flex items-center justify-center">
-                    start now
+                  {t("button1")}
                   </FillButton>
                 </div>
 
@@ -56,15 +56,10 @@ export default function LandingPage() {
             <Reveal>
               <div className="flex flex-col items-center mt-[32px] py-[48px] px-[20px] bg-secondary-brown-light-active sm:py-[64px] sm:px-[203px]">
                 <h2 className="font-sourceSerif text-[32px] capitalize text-secondary-brown-darker sm:text-[64px] sm:font-semibold ">
-                  our story
+                {t("title2")}
                 </h2>
                 <p className="font-poppins text-justify font-medium text-[16px] text-primary-orange-dark-active capitalize sm:text-[18px]">
-                  Introducing IslamicHub a cutting-edge platform designed to
-                  revolutionize the way Islamic Centers manage their online
-                  presence. Instead of the lengthy and expensive process of
-                  setting up individual websites, IslamicHub offers a unique,
-                  central platform for these institutions to generate and share
-                  their content.
+                {t("soustitre2")}
                 </p>
               </div>
             </Reveal>
@@ -72,29 +67,29 @@ export default function LandingPage() {
             <div className="mt-[28px] pt-[32px] mb-[48px]  sm:px-[100px] sm:py-[32px]">
               <Reveal>
                 <h2 className="font-sourceSerif text-[32px] capitalize text-center text-secondary-brown-darker mb-[48px] sm:font-semibold ">
-                  we value
+                {t("title3")}
                 </h2>
               </Reveal>
 
               <div className="flex flex-col gap-[51px] items-center sm:flex-row">
                 <Reveal>
                   <Card
-                    title="community"
-                    text="Introducing 'IslamicHub', a cutting-edge platform designed to "
+                    title= {t("soustitre31")}
+                    text={t("soustitre32")}
                     image={CardImage}
                   />
                 </Reveal>
                 <Reveal>
                   <Card
-                    title="community"
-                    text="Introducing 'IslamicHub', a cutting-edge platform designed to "
+                    title= {t("soustitre31")}
+                    text={t("soustitre32")}
                     image={CardImage}
                   />
                 </Reveal>
                 <Reveal>
                   <Card
-                    title="community"
-                    text="Introducing 'IslamicHub', a cutting-edge platform designed to "
+                    title={t("soustitre31")}
+                    text={t("soustitre32")}
                     image={CardImage}
                   />
                 </Reveal>
@@ -106,13 +101,10 @@ export default function LandingPage() {
                 <Reveal>
                   <div className=" sm:px-[105px]">
                     <h2 className="font-sourceSerif text-center text-[32px] capitalize text-secondary-brown-darker sm:text-[64px] sm:font-semibold ">
-                      our services
+                    {t("title4")}
                     </h2>
                     <p className="font-poppins text-center font-medium text-[16px] text-secondary-brown-darker capitalize sm:text-[18px]">
-                      Showcase the diverse range of services, programs, and
-                      activities offered by the Islamic center.Showcase the
-                      diverse range of services, programs, and activities
-                      offered by the Islamic center.
+                    {t("soustitre4")}
                     </p>
                   </div>
                 </Reveal>
@@ -120,16 +112,16 @@ export default function LandingPage() {
                 <div className="flex flex-col gap-[64px] sm:flex-row sm:gap-[128px]">
                   <Reveal>
                     <CardWithButton
-                      text="Introducing 'IslamicHub', a cutting-edge platform designed to "
+                      text={t("soustitre41")}
                       image={CardImage1}
-                      title="create customized websites"
+                      title={t("soustitre42")}
                     />
                   </Reveal>
                   <Reveal>
                     <CardWithButton
-                      text="Introducing 'IslamicHub', a cutting-edge platform designed to "
+                      text={t("soustitre41")}
                       image={CardImage1}
-                      title="create customized websites"
+                      title={t("soustitre42")}
                     />
                   </Reveal>
                 </div>
