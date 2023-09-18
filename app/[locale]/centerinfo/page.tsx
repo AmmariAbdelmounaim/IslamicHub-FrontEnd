@@ -7,19 +7,26 @@ import FillButton from "../../../components/button/FillButton";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { useCreateCenterMutation } from "../../../redux/features/centersApiSlice";
 import { useRouter } from "next/navigation";
-import { Theme, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   setCenter,
-  setCredentials,
   setHeaderFooter,
   setHomePage,
+  setPrayer,
   setTheme,
 } from "../../../redux/features/authSlice";
-import { Center, HeaderFooter, HomePage } from "../../../types/types";
+import {
+  HeaderFooter,
+  HomePage,
+  Prayer,
+  PrayerTime,
+} from "../../../types/types";
 import { useCreateThemeMutation } from "../../../redux/features/themeApiSlice";
 import { useCreateHeaderFooterMutation } from "../../../redux/features/header_footerApiSlice";
 import { useCreateHomePageMutation } from "../../../redux/features/homePageApiSlice";
 import { useCreateEventMutation } from "../../../redux/features/eventApiSlice";
+import { useCreatePrayerMutation } from "../../../redux/features/prayerApiSlice";
+import { useGetPrayerTimeMutation } from "../../../redux/features/prayerTimeApiSlice";
 
 interface FormValues {
   IslamicCenterName: string;
@@ -50,8 +57,29 @@ function CenterInfo() {
   const [createTheme] = useCreateThemeMutation();
   const [createHeaderFooter] = useCreateHeaderFooterMutation();
   const [createHomePage] = useCreateHomePageMutation();
+  const [createPrayer] = useCreatePrayerMutation();
+  const [getPrayerTime] = useGetPrayerTimeMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  let prayerTimeData: PrayerTime = {
+    fajr: "",
+    shuruq: "",
+    zohar: "",
+    asar: "",
+    maghrib: "",
+    isha: "",
+    day: "",
+    year: "",
+    month: "",
+  };
+  let prayerData: Prayer = {
+    asar: 0,
+    city: "",
+    country: "",
+    highLatitude: 0,
+    prayer: 0,
+    prayerTime: prayerTimeData,
+  };
 
   useEffect(() => {
     if (!userInfo) {
@@ -130,11 +158,62 @@ function CenterInfo() {
             centerId: res.id,
             eventDTOList: [],
             slideDTOList: [],
+            prayerDTO: null,
             token: userInfo?.token,
           });
           if ("data" in homePageRes) {
             console.log("home page response :", homePageRes.data as HomePage);
             dispatch(setHomePage({ ...(homePageRes.data as HomePage) }));
+          } else if ("error" in homePageRes) {
+            console.error("Error:", homePageRes.error);
+          }
+
+          if ("data" in homePageRes) {
+            const prayerTimeRes = await getPrayerTime({
+              city: "agadir",
+              country: "morocco",
+              method: 3,
+              school: 0,
+              latitudeAdjustmentMethod: 1,
+            });
+            if ("data" in prayerTimeRes) {
+              prayerTimeData.fajr = prayerTimeRes.data.data.timings.Fajr;
+              prayerTimeData.shuruq = prayerTimeRes.data.data.timings.Sunrise;
+              prayerTimeData.zohar = prayerTimeRes.data.data.timings.Dhuhr;
+              prayerTimeData.asar = prayerTimeRes.data.data.timings.Asr;
+              prayerTimeData.maghrib = prayerTimeRes.data.data.timings.Maghrib;
+              prayerTimeData.isha = prayerTimeRes.data.data.timings.Isha;
+              prayerTimeData.day = prayerTimeRes.data.data.date.hijri.day;
+              prayerTimeData.year = prayerTimeRes.data.data.date.hijri.year;
+              prayerTimeData.month =
+                prayerTimeRes.data.data.date.hijri.month.en;
+              console.log("prayer time data: ", prayerTimeData);
+            } else if ("error" in prayerTimeRes) {
+              console.error("Error:", prayerTimeRes.error);
+            }
+
+            const prayerRes = await createPrayer({
+              id: 0,
+              country: "morocco",
+              city: "agadir",
+              state: "",
+              highLatitude: 1,
+              prayer: 3,
+              asar: 0,
+              token: userInfo?.token,
+              homePageId: homePageRes.data.id,
+            });
+            if ("data" in prayerRes) {
+              prayerData = { ...prayerRes.data };
+              prayerData.prayerTime = prayerTimeData;
+              dispatch(
+                setPrayer({
+                  ...(prayerData as Prayer),
+                })
+              );
+            } else if ("error" in prayerRes) {
+              console.error("Error:", prayerRes.error);
+            }
           } else if ("error" in homePageRes) {
             console.error("Error:", homePageRes.error);
           }

@@ -66,6 +66,7 @@ export interface HomePage {
   serviceDTOList: Service[];
   testimonialDTOList: Testimonial[];
   aboutUsDTOList: AboutUs[];
+  prayerDTO: Prayer;
   centerId: number;
 }
 
@@ -103,4 +104,26 @@ export interface Slide {
   id?: number;
   image: string;
   homePageId?: number;
+}
+export interface Prayer {
+  id?: number;
+  country: string;
+  city: string;
+  state?: string;
+  highLatitude: number;
+  prayer: number; //method
+  asar: number; //school
+  prayerTime: PrayerTime;
+  homePageId?: number;
+}
+export interface PrayerTime {
+  fajr: string;
+  shuruq: string;
+  zohar: string;
+  asar: string;
+  maghrib: string;
+  isha: string;
+  day: string;
+  month: string;
+  year: string;
 }

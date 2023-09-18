@@ -22,7 +22,6 @@ export function CustomPhoneInput<T extends Record<string, string | undefined>>({
       >
         {label}
       </label>
-      <ErrorMessage name={String(name)} />
       <PhoneInput
         international={false}
         inputstyle={{
@@ -42,6 +41,7 @@ export function CustomPhoneInput<T extends Record<string, string | undefined>>({
           }
         `}
       />
+      <ErrorMessage name={String(name)} />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import { Reveal } from "../../../components/animations/Reveal";
 import "../../../styles/Home.module.css";
 import { useAppSelector } from "../../../redux/store";
 import { Event as EventType } from "../../../types/types";
+import PrayerTime from "./PrayerTime";
 
 interface PreviewPageProps {
   onClose: () => void;
@@ -130,6 +131,9 @@ const PreviewPage = ({ onClose }: PreviewPageProps) => {
             text="Being part of Al-Ihsan Center's community outreach is rewarding. Seeing the impact of our efforts on people's lives brings joy to my heart."
             title="Amina Hassan"
           />
+        </div>
+        <div className="m-[50px] flex justify-center items-center">
+          <PrayerTime />
         </div>
         <GetInTouchh />
         <Foooter
