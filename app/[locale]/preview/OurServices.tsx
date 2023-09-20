@@ -1,17 +1,19 @@
 import React from "react";
+import OurService from "./OurService";
 
-function OurService() {
+function OurServices() {
   return (
-    <div className=" rounded-lg p-4 border-[2px] border-primary-orange-normal bg-secondary-brown-light shadow-dropBrown w-[380px]">
-      <h2 className="text-[24px] text-center font-poppins font-medium mb-4">
-        Quranic Studies and Tajweed Classes
+    <div className="px-[100px] py-[64px] flex flex-col gap-[40px] border-b-[2px] border-b-secondary-brown-light-active">
+      <h2 className="font-sourceSerif text-[40px] capitalize text-center ">
+        our services
       </h2>
-      <p className="text-[18px] font-poppins font-normal text-justify text-primary-orange-darker">
-        Enhance your understanding of the Holy Quran through comprehensive
-        studies and Tajweed classes for all ages..
-      </p>
+      <div className=" flex justify-between">
+        <OurService />
+        <OurService />
+        <OurService />
+      </div>
     </div>
   );
 }
 
-export default OurService;
+export default OurServices;

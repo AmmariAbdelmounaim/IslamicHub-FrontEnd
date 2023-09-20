@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import OurService from "../../../preview/OurServices";
+import OurService from "../../../preview/OurService";
 import { FieldArray, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/store";
 import { Service } from "../../../../../types/types";
