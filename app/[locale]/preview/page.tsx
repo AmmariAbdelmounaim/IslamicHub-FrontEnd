@@ -13,7 +13,7 @@ import FillButton from "../../../components/button/FillButton";
 import "../../../styles/Home.module.css";
 import { useAppSelector } from "../../../redux/store";
 import PrayerTime from "./PrayerTime";
-import UpcomingEvents from "./upcomingEvents";
+import UpcomingEvents from "./UpcomingEvents";
 import OurServices from "./OurServices";
 
 interface PreviewPageProps {

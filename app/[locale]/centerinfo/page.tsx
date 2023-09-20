@@ -153,7 +153,7 @@ function CenterInfo() {
             ourVision: "",
             eventBorderColor: "#CE7D39",
             eventBgColor: "#F8ECE1",
-            eventAdditionalInfoColor: "#FAF2EB",
+            eventAdditionalInfoColor: "#997950",
             iconSlidesColor: "#997950",
             centerId: res.id,
             eventDTOList: [],

@@ -2,10 +2,23 @@ import React from "react";
 import { useAppSelector } from "../../../redux/store";
 import { Event as EventType } from "../../../types/types";
 import Event from "../../../components/cms/event";
-
+import { formatDate } from "../../../helpers/formatDate";
 function UpcomingEvents() {
   const { userInfo } = useAppSelector((state) => state.auth);
-
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   return (
     <div className="mx-[100px] py-[64px] flex flex-col gap-[64px] items-center border-b-[2px] border-b-secondary-brown-light-active">
       <h2 className="font-sourceSerif text-[40px] capitalize">
@@ -14,33 +27,45 @@ function UpcomingEvents() {
       <div className="flex flex-col gap-[24px] w-full">
         {(userInfo?.centerDTO.homePageDTO.eventDTOList.length as number) > 0 ? (
           userInfo?.centerDTO.homePageDTO.eventDTOList.map(
-            (event: EventType, index) => (
-              <div key={index}>
-                <Event
-                  additionalInfoColor={
-                    userInfo.centerDTO.homePageDTO.eventAdditionalInfoColor
-                  }
-                  backgroundColor={userInfo.centerDTO.homePageDTO.eventBgColor}
-                  borderColor={userInfo.centerDTO.homePageDTO.eventBorderColor}
-                  eventName={`${
-                    userInfo?.centerDTO.homePageDTO.eventDTOList[index].name ??
-                    "Community Iftar: Embracing the Spirit of Giving"
-                  }`}
-                  eventDescription={`${
-                    userInfo?.centerDTO.homePageDTO.eventDTOList[index]
-                      .description ??
-                    "Join us for a transformative evening of Quranic wisdom and spiritual reflections. Open to all, deepen your understanding and strengthen your connection to the Divine."
-                  }`}
-                  eventTime="16:00 - 20:00"
-                  eventLocation={`${
-                    userInfo?.centerDTO.homePageDTO.eventDTOList[index]
-                      .location ?? "Al Noor Hall, Crescent Street, Harmonyville"
-                  }`}
-                  day={21}
-                  month="Jun"
-                />
-              </div>
-            )
+            (event: EventType, index) => {
+              const { day: daytime, month: monthtime } = formatDate(
+                userInfo?.centerDTO.homePageDTO.eventDTOList[index].startAt
+              );
+
+              return (
+                <div key={index}>
+                  <Event
+                    additionalInfoColor={
+                      userInfo.centerDTO.homePageDTO.eventAdditionalInfoColor
+                    }
+                    backgroundColor={
+                      userInfo.centerDTO.homePageDTO.eventBgColor
+                    }
+                    borderColor={
+                      userInfo.centerDTO.homePageDTO.eventBorderColor
+                    }
+                    eventName={`${
+                      userInfo?.centerDTO.homePageDTO.eventDTOList[index]
+                        .name ??
+                      "Community Iftar: Embracing the Spirit of Giving"
+                    }`}
+                    eventDescription={`${
+                      userInfo?.centerDTO.homePageDTO.eventDTOList[index]
+                        .description ??
+                      "Join us for a transformative evening of Quranic wisdom and spiritual reflections. Open to all, deepen your understanding and strengthen your connection to the Divine."
+                    }`}
+                    eventTime="16:00 - 20:00"
+                    eventLocation={`${
+                      userInfo?.centerDTO.homePageDTO.eventDTOList[index]
+                        .location ??
+                      "Al Noor Hall, Crescent Street, Harmonyville"
+                    }`}
+                    day={daytime}
+                    month={monthtime}
+                  />
+                </div>
+              );
+            }
           )
         ) : (
           <div className="flex flex-col gap-[24px]">

@@ -40,7 +40,7 @@ interface FormValues {
 }
 
 export default function CalendarManagement() {
-  const t = useTranslations("calendar");
+  // const t = useTranslations("calendar");
   const [editHomePage] = useEditHomePageMutation();
   const [createEvent] = useCreateEventMutation();
   const [deleteEvent] = useDeleteEventMutation();
@@ -240,7 +240,6 @@ export default function CalendarManagement() {
                                       label="event end time"
                                       placeholder="Enter The End Date of Your Event"
                                       name={`events[${index}].endAt`}
-                                      timeOnly
                                     />
                                   </div>
                                   <div className="flex items-center justify-center">
