@@ -28,10 +28,16 @@ function UpcomingEvents() {
         {(userInfo?.centerDTO.homePageDTO.eventDTOList.length as number) > 0 ? (
           userInfo?.centerDTO.homePageDTO.eventDTOList.map(
             (event: EventType, index) => {
-              const { day: daytime, month: monthtime } = formatDate(
+              const {
+                day: daytime,
+                month: monthtime,
+                time: startTime,
+              } = formatDate(
                 userInfo?.centerDTO.homePageDTO.eventDTOList[index].startAt
               );
-
+              const { time: endTime } = formatDate(
+                userInfo?.centerDTO.homePageDTO.eventDTOList[index].endAt
+              );
               return (
                 <div key={index}>
                   <Event
@@ -54,7 +60,7 @@ function UpcomingEvents() {
                         .description ??
                       "Join us for a transformative evening of Quranic wisdom and spiritual reflections. Open to all, deepen your understanding and strengthen your connection to the Divine."
                     }`}
-                    eventTime="16:00 - 20:00"
+                    eventTime={`${startTime} - ${endTime}`}
                     eventLocation={`${
                       userInfo?.centerDTO.homePageDTO.eventDTOList[index]
                         .location ??

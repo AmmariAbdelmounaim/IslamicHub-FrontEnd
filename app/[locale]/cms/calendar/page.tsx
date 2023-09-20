@@ -240,6 +240,7 @@ export default function CalendarManagement() {
                                       label="event end time"
                                       placeholder="Enter The End Date of Your Event"
                                       name={`events[${index}].endAt`}
+                                      timeOnly
                                     />
                                   </div>
                                   <div className="flex items-center justify-center">

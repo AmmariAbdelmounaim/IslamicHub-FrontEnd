@@ -14,8 +14,15 @@ export const formatDate = (dateStr: string) => {
     "Nov",
     "Dec",
   ];
+
+  // Format the time component
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const time = `${hours}:${minutes}`;
+
   return {
     day: date.getDate(),
     month: monthNames[date.getMonth()],
+    time,
   };
 };
