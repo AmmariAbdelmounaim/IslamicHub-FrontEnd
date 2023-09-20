@@ -5,7 +5,7 @@ function Messages() {
     <div className="flex flex-col gap-[40px]">
       <div className="flex flex-col gap-[24px]">
         <h1 className="font-poppins capitalize text-secondary-brown-darker text-[24px]">
-          messages from peoble
+          messages from people
         </h1>
         <p className="font-poppins text-primary-orange-dark-active text-[18px] capitalize">
           in this section you can see messages from people and their contact

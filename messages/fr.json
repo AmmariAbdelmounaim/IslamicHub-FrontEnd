@@ -1,17 +1,20 @@
 {
   "Index": {
-    "title": "Bonjour utlisateur!"
+    "title": "Bonjour utilisateur!",
+    "soustitre" : "Commencez par une salutation chaleureuse, Commencez par une salutation chaleureuse Commencez par une salutation chaleureuse",
+    "button1": "Commencez maintenant",
+    "title2":"Notre Histoire",
+    "soustitre2":"Présentation de « IslamicHub », une plateforme de pointe conçue pour révolutionner la façon dont les centres islamiques gèrent leur présence en ligne. Au lieu du processus long et coûteux de création de sites Web individuels, IslamHub offre une plate-forme unique et centrale permettant à ces institutions de générer et de partager leur contenu.",
+    "title3" :"Nous valorisons",
+    "soustitre31" : "Communauté",
+    "soustitre32" : "Présentation de « IslamicHub », une plateforme de pointe conçue pour  ",
+    "title4" :"Nos Services",
+    "soustitre4":"Présentez la gamme diversifiée de services, de programmes et d'activités offerts par le centre islamique. Présentez la gamme diversifiée de services, de programmes et d'activités offerts par le centre islamique.",
+    "soustitre41":"Créer un site internet personnalisé",
+    "soustitre42":"Présentation de « IslamicHub », une plateforme de pointe conçue pour"
+
   },
-  "SignIn": {
-    "password": "mot de passe"
-  },
-  "calendar": {},
-  "content": {},
-  "donation": {},
-  "gallery": {},
-  "pricing": {},
-  "verification": {},
-  "welcome": {},
+ 
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, en {Anglais} fr {Français} other {Inconnue}}"
