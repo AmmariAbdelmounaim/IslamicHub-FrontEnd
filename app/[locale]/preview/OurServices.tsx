@@ -11,7 +11,7 @@ function OurServices() {
       <h2 className="font-sourceSerif text-[40px] capitalize text-center ">
         our services
       </h2>
-      <div className=" flex justify-center items-center gap-[10ab0px] flex-wrap">
+      <div className="flex justify-center items-center gap-[100px] flex-wrap">
         {(userInfo?.centerDTO.homePageDTO.serviceDTOList.length as number) >
         0 ? (
           userInfo?.centerDTO.homePageDTO.serviceDTOList.map(
