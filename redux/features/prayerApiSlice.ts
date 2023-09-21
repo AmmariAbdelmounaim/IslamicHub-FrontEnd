@@ -1,7 +1,7 @@
 import { apiSlice } from "./apiSlice";
 
 const PRAYER_URL = "/api/prayer/user";
-export const pryaerApiSlice = apiSlice.injectEndpoints({
+export const prayerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createPrayer: builder.mutation({
       query: (data) => ({
@@ -18,6 +18,7 @@ export const pryaerApiSlice = apiSlice.injectEndpoints({
           highLatitude: data.highLatitude,
           prayer: data.prayer,
           asar: data.asar,
+          prayerTimeDTO: data.prayerTimeDTO,
           homePageId: data.homePageId,
         },
       }),
@@ -44,6 +45,7 @@ export const pryaerApiSlice = apiSlice.injectEndpoints({
           state: data.state,
           highLatitude: data.highLatitude,
           prayer: data.prayer,
+          prayerTimeDTO: data.prayerTimeDTO,
           asar: data.asar,
         },
       }),
@@ -65,4 +67,4 @@ export const {
   useDeletePrayerMutation,
   useEditPrayerMutation,
   useGetPrayerMutation,
-} = pryaerApiSlice;
+} = prayerApiSlice;

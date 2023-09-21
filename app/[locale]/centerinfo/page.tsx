@@ -13,6 +13,7 @@ import {
   setHeaderFooter,
   setHomePage,
   setPrayer,
+  setPrayerTime,
   setTheme,
 } from "../../../redux/features/authSlice";
 import {
@@ -24,9 +25,9 @@ import {
 import { useCreateThemeMutation } from "../../../redux/features/themeApiSlice";
 import { useCreateHeaderFooterMutation } from "../../../redux/features/header_footerApiSlice";
 import { useCreateHomePageMutation } from "../../../redux/features/homePageApiSlice";
-import { useCreateEventMutation } from "../../../redux/features/eventApiSlice";
 import { useCreatePrayerMutation } from "../../../redux/features/prayerApiSlice";
 import { useGetPrayerTimeMutation } from "../../../redux/features/prayerTimeApiSlice";
+import { useCreatePrayerTimeMutation } from "../../../redux/features/prayerTimeBDApiSlice";
 
 interface FormValues {
   IslamicCenterName: string;
@@ -58,6 +59,7 @@ function CenterInfo() {
   const [createHeaderFooter] = useCreateHeaderFooterMutation();
   const [createHomePage] = useCreateHomePageMutation();
   const [createPrayer] = useCreatePrayerMutation();
+  const [createPrayerTime] = useCreatePrayerTimeMutation();
   const [getPrayerTime] = useGetPrayerTimeMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -78,7 +80,7 @@ function CenterInfo() {
     country: "",
     highLatitude: 0,
     prayer: 0,
-    prayerTime: prayerTimeData,
+    prayerTimeDTO: prayerTimeData,
   };
 
   useEffect(() => {
@@ -204,8 +206,24 @@ function CenterInfo() {
               homePageId: homePageRes.data.id,
             });
             if ("data" in prayerRes) {
+              //creating prayer time:
+              const prayerTimeBDRes = await createPrayerTime({
+                id: 0,
+                fajr: prayerTimeData.fajr,
+                shuruq: prayerTimeData.shuruq,
+                zohar: prayerTimeData.zohar,
+                asar: prayerTimeData.asar,
+                maghrib: prayerTimeData.maghrib,
+                isha: prayerTimeData.isha,
+                day: prayerTimeData.day,
+                year: prayerTimeData.year,
+                month: prayerTimeData.month,
+                token: userInfo?.token,
+                prayerId: prayerRes.data.id,
+              });
+              console.log("prayer time create response: ", prayerTimeBDRes);
               prayerData = { ...prayerRes.data };
-              prayerData.prayerTime = prayerTimeData;
+              prayerData.prayerTimeDTO = prayerTimeData;
               dispatch(
                 setPrayer({
                   ...(prayerData as Prayer),

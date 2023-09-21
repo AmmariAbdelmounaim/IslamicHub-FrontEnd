@@ -113,10 +113,11 @@ export interface Prayer {
   highLatitude: number;
   prayer: number; //method
   asar: number; //school
-  prayerTime: PrayerTime;
+  prayerTimeDTO: PrayerTime;
   homePageId?: number;
 }
 export interface PrayerTime {
+  id?: number;
   fajr: string;
   shuruq: string;
   zohar: string;
@@ -126,4 +127,5 @@ export interface PrayerTime {
   day: string;
   month: string;
   year: string;
+  prayerId?: number;
 }

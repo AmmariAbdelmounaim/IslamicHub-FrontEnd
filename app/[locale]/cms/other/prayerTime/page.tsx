@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { setPrayer } from "../../../../../redux/features/authSlice";
 import { Prayer, PrayerTime } from "../../../../../types/types";
 import { useGetPrayerTimeMutation } from "../../../../../redux/features/prayerTimeApiSlice";
+import { useEditPrayerTimeMutation } from "../../../../../redux/features/prayerTimeBDApiSlice";
 
 interface FormValues {
   country: string;
@@ -25,30 +26,37 @@ function PrayerTimeSection() {
   const [isClient, setIsClient] = useState(false);
   const [editPrayer] = useEditPrayerMutation();
   const [getPrayerTime] = useGetPrayerTimeMutation();
+  const [editPrayerTime] = useEditPrayerTimeMutation();
   const { userInfo } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  // let prayerTimeData: PrayerTime = {
-  //   fajr: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.fajr as string,
-  //   shuruq: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime
-  //     .shuruq as string,
-  //   zohar: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.zohar as string,
-  //   asar: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.asar as string,
-  //   maghrib: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime
-  //     .maghrib as string,
-  //   isha: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.isha as string,
-  //   day: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.day as string,
-  //   year: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.year as string,
-  //   month: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTime.month as string,
-  // };
-  // let prayerData: Prayer = {
-  //   asar: userInfo?.centerDTO.homePageDTO.prayerDTO.asar as number,
-  //   city: userInfo?.centerDTO.homePageDTO.prayerDTO.city as string,
-  //   country: userInfo?.centerDTO.homePageDTO.prayerDTO.country as string,
-  //   highLatitude: userInfo?.centerDTO.homePageDTO.prayerDTO
-  //     .highLatitude as number,
-  //   prayer: userInfo?.centerDTO.homePageDTO.prayerDTO.prayer as number,
-  //   // prayerTime: prayerTimeData,
-  // };
+  let prayerTimeData: PrayerTime = {
+    fajr: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .fajr as string,
+    shuruq: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .shuruq as string,
+    zohar: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .zohar as string,
+    asar: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .asar as string,
+    maghrib: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .maghrib as string,
+    isha: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .isha as string,
+    day: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.day as string,
+    year: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .year as string,
+    month: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+      .month as string,
+  };
+  let prayerData: Prayer = {
+    asar: userInfo?.centerDTO.homePageDTO.prayerDTO.asar as number,
+    city: userInfo?.centerDTO.homePageDTO.prayerDTO.city as string,
+    country: userInfo?.centerDTO.homePageDTO.prayerDTO.country as string,
+    highLatitude: userInfo?.centerDTO.homePageDTO.prayerDTO
+      .highLatitude as number,
+    prayer: userInfo?.centerDTO.homePageDTO.prayerDTO.prayer as number,
+    prayerTimeDTO: prayerTimeData,
+  };
 
   const initialValues: FormValues = {
     country: userInfo?.centerDTO.homePageDTO.prayerDTO.country ?? "",
@@ -78,27 +86,45 @@ function PrayerTimeSection() {
             onSubmit={async (values, { setSubmitting }) => {
               try {
                 console.log(values);
-                // const prayerTimeRes = await getPrayerTime({
-                //   city: values.city,
-                //   country: values.country,
-                //   method: values.prayer,
-                //   school: values.asar,
-                //   latitudeAdjustmentMethod: values.highLatitude,
-                // });
-                // if ("data" in prayerTimeRes) {
-                //   prayerTimeData.fajr = prayerTimeRes.data.data.timings.Fajr;
-                //   prayerTimeData.shuruq =
-                //     prayerTimeRes.data.data.timings.Sunrise;
-                //   prayerTimeData.zohar = prayerTimeRes.data.data.timings.Dhuhr;
-                //   prayerTimeData.asar = prayerTimeRes.data.data.timings.Asr;
-                //   prayerTimeData.maghrib =
-                //     prayerTimeRes.data.data.timings.Maghrib;
-                //   prayerTimeData.isha = prayerTimeRes.data.data.timings.Isha;
-                //   prayerTimeData.day = prayerTimeRes.data.data.date.hijri.day;
-                //   prayerTimeData.year = prayerTimeRes.data.data.date.hijri.year;
-                //   prayerTimeData.month =
-                //     prayerTimeRes.data.data.date.hijri.month.en;
-                // }
+                const prayerTimeApiRes = await getPrayerTime({
+                  city: values.city,
+                  country: values.country,
+                  method: values.prayer,
+                  school: values.asar,
+                  latitudeAdjustmentMethod: values.highLatitude,
+                });
+                if ("data" in prayerTimeApiRes) {
+                  prayerTimeData.fajr = prayerTimeApiRes.data.data.timings.Fajr;
+                  prayerTimeData.shuruq =
+                    prayerTimeApiRes.data.data.timings.Sunrise;
+                  prayerTimeData.zohar =
+                    prayerTimeApiRes.data.data.timings.Dhuhr;
+                  prayerTimeData.asar = prayerTimeApiRes.data.data.timings.Asr;
+                  prayerTimeData.maghrib =
+                    prayerTimeApiRes.data.data.timings.Maghrib;
+                  prayerTimeData.isha = prayerTimeApiRes.data.data.timings.Isha;
+                  prayerTimeData.day =
+                    prayerTimeApiRes.data.data.date.hijri.day;
+                  prayerTimeData.year =
+                    prayerTimeApiRes.data.data.date.hijri.year;
+                  prayerTimeData.month =
+                    prayerTimeApiRes.data.data.date.hijri.month.en;
+                }
+                const prayerTimeRes = await editPrayerTime({
+                  id: userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO
+                    .id,
+                  fajr: prayerTimeData.fajr,
+                  shuruq: prayerTimeData.shuruq,
+                  zohar: prayerTimeData.zohar,
+                  asar: prayerTimeData.asar,
+                  maghrib: prayerTimeData.maghrib,
+                  isha: prayerTimeData.isha,
+                  day: prayerTimeData.day,
+                  month: prayerTimeData.month,
+                  year: prayerTimeData.year,
+                  token: userInfo?.token,
+                });
+                console.log("praye time response: ", prayerTimeRes);
                 const prayerRes = await editPrayer({
                   id: userInfo?.centerDTO.homePageDTO.prayerDTO.id,
                   country: values.country,
@@ -107,11 +133,9 @@ function PrayerTimeSection() {
                   highLatitude: values.highLatitude,
                   prayer: values.prayer,
                   asar: values.asar,
+                  prayerTimeDTO: prayerTimeRes,
                   token: userInfo?.token,
                 }).unwrap();
-                // prayerData = { ...prayerRes };
-                // prayerData.prayerTime = prayerTimeData;
-
                 dispatch(
                   setPrayer({
                     ...(prayerRes as Prayer),

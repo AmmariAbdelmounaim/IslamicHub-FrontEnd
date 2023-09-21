@@ -11,7 +11,9 @@ function PrayerTime() {
       </h1>
       <div className="border-[2px] border-primary-orange-normal rounded-[10px] px-[75px] py-[24px] flex flex-col w-[530px] gap-[16px]">
         <h3 className="font-sourceSerif text-[28px] capitalize text-primary-orange-dark-active text-center font-semibold">
-          {"20"} {"Rabīʿ al-awwal"} {"2023"} Hijri
+          {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.day}{" "}
+          {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.month}{" "}
+          {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.year} Hijri
         </h3>
         <div className="flex flex-col gap-[16px]">
           <div className="flex justify-between pb-[16px] border-b-[4px] border-secondary-brown-normal-30-opacity">
@@ -27,7 +29,7 @@ function PrayerTime() {
               Fajr
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"06:03"}
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.fajr}
             </p>
           </div>
           <div className="flex justify-between px-[24px] pb-[16px] border-dashed border-b-[2px] border-secondary-brown-normal-30-opacity">
@@ -35,7 +37,7 @@ function PrayerTime() {
               Shuruq
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"07:23"}
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.shuruq}
             </p>
           </div>
           <div className="flex justify-between px-[24px] pb-[16px] border-dashed border-b-[2px] border-secondary-brown-normal-30-opacity">
@@ -43,7 +45,7 @@ function PrayerTime() {
               Zohar
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"13:33"}
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.zohar}
             </p>
           </div>
           <div className="flex justify-between px-[24px] pb-[16px] border-dashed border-b-[2px] border-secondary-brown-normal-30-opacity">
@@ -51,7 +53,7 @@ function PrayerTime() {
               Asar
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"17:02"}
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.asar}
             </p>
           </div>
           <div className="flex justify-between px-[24px] pb-[16px] border-dashed border-b-[2px] border-secondary-brown-normal-30-opacity">
@@ -59,7 +61,7 @@ function PrayerTime() {
               Maghrib
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"19:41"}
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.maghrib}
             </p>
           </div>
           <div className="flex justify-between px-[24px]">
@@ -67,8 +69,8 @@ function PrayerTime() {
               Isha
             </p>
             <p className="text-[20px] font-poppins font-semibold capitalize text-primary-orange-dark-active">
-              {"20:57"}
-            </p>
+              {userInfo?.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO.isha}
+            </p>{" "}
           </div>
         </div>
       </div>

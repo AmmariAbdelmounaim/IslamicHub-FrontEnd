@@ -52,6 +52,13 @@ export const authSlice = createSlice({
       }
       localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
     },
+    setPrayerTime: (state, action) => {
+      if (state.userInfo) {
+        state.userInfo.centerDTO.homePageDTO.prayerDTO.prayerTimeDTO =
+          action.payload;
+      }
+      localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
+    },
 
     setEvent: (state, action) => {
       if (state.userInfo) {
@@ -219,6 +226,7 @@ export const authSlice = createSlice({
         localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
       }
     },
+
     logout: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
@@ -248,5 +256,6 @@ export const {
   removeAboutUs,
   updateAboutUs,
   setPrayer,
+  setPrayerTime,
 } = authSlice.actions;
 export default authSlice.reducer;
