@@ -15,6 +15,7 @@ import { useAppSelector } from "../../../redux/store";
 import PrayerTime from "./PrayerTime";
 import UpcomingEvents from "./UpcomingEvents";
 import OurServices from "./OurServices";
+import Image from "next/image";
 
 interface PreviewPageProps {
   onClose: () => void;
@@ -22,12 +23,19 @@ interface PreviewPageProps {
 const PreviewPage = ({ onClose }: PreviewPageProps) => {
   const { userInfo } = useAppSelector((state) => state.auth);
   return (
-    <div className="absolute inset-0 bg-secondary-brown-light z-50 slide-up-fade-in">
-      <header className="w-full flex justify-center py-[10px] px-[20px]">
-        <FillButton additionalStyle="rounded-[15px]" onClick={onClose}>
-          Hide
-        </FillButton>
-      </header>
+    <div className="absolute inset-0 bg-secondary-brown-light z-40 slide-up-fade-in">
+      <button
+        className="fixed right-[20px] bottom-[20px] z-50 flex justify-center items-center rounded-full bg-primary-orange-normal hover:bg-primary-orange-normal-hover w-[70px] h-[70px] "
+        onClick={onClose}
+      >
+        <Image
+          src={"/cross_icon.svg"}
+          width={25}
+          height={25}
+          alt="cross icon"
+        />
+      </button>
+
       <div className="relative bg-secondary-brown-light">
         <Navbar />
         <SliderImage />
@@ -40,7 +48,7 @@ const PreviewPage = ({ onClose }: PreviewPageProps) => {
 
         <RaisingF />
         <DonatePage />
-        <div className="flex justify-between px-[100px] mt-[40px]">
+        <div className="flex justify-between mx-[100px] py-[40px] border-b-[2px] border-b-secondary-brown-light-active">
           <Test
             image="/assets/testimonials1.jpeg"
             text="The Saturday Arabic School at Al-Haramain Center has been a wonderful experience for my kids. They are learning Arabic and Islamic values in a fun and engaging way!"

@@ -5,7 +5,7 @@ function PrayerTime() {
   const { userInfo } = useAppSelector((state) => state.auth);
 
   return (
-    <div className="py-[64px] px-[100px] flex flex-col gap-[48px]">
+    <div className="w-full py-[64px] mx-[100px] border-b-[2px] border-b-secondary-brown-light-active  flex flex-col items-center justify-center gap-[48px]">
       <h1 className="font-sourceSerif text-[40px] text-primary-orange-darker capitalize text-center">
         prayer time
       </h1>

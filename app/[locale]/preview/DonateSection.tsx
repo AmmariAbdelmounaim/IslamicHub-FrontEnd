@@ -3,8 +3,8 @@ import FillButton from "../../../components/button/FillButton";
 
 const DonatePage = () => {
   return (
-    <div className="py-[64px]  border-b-[2px] border-b-secondary-brown-light-active">
-      <div className="container mx-auto px-4">
+    <div className="py-[64px] mx-[100px]  border-b-[2px] border-b-secondary-brown-light-active">
+      <div className="container mx-auto ">
         <Head>
           <title>Donate Now</title>
           <link rel="icon" href="/favicon.ico" />
