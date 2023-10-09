@@ -8,7 +8,7 @@ interface CardProps {
 
 const Card = ({ title, image, text }: CardProps) => {
   return (
-    <div className="flex flex-col  w-[300px] shadow-lg rounded-xl py-[32px] px-[16px] gap-[40px] m-[25px] sm:px-[32px] sm:gap-[50px] sm:w-[auto]">
+    <div className="flex flex-col  w-[300px] shadow-lg rounded-xl py-[32px] px-[16px] gap-[40px] m-[25px] sm:flex sm:justify-between sm:px-[32px] sm:gap-[50px] sm:h-[550px] sm:w-[auto]">
       <Image
         src={image as string}
         alt="card image"

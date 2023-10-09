@@ -1,19 +1,21 @@
 {
   "Index": {
-    "title": "Welcome User Title",
-    "soustitre" : "Start with a warm greeting, Start with a warm greeting Start with a warm greeting",
+    "title": "Welcome to IslamicHub",
+    "soustitre": "Dive into a universe where creating your own Islamic center is just a click away. No coding, no hassle - just pure, seamless creation. Let's embark on this spiritual journey together! ",
     "button1": "Start now",
-    "title2":"Our Story",
-    "soustitre2" :"Introducing IslamicHub, a cutting-edge platform designed to revolutionize the way Islamic Centers manage their online presence. Instead of the lengthy and expensive process of setting up individual websites, IslamicHub offers a unique, central platform for these institutions to generate and share their content.",
-    "title3" :"We Value",
-    "soustitre31" : "Community",
-    "soustitre32" : "Introducing IslamicHub, a cutting-edge platform designed to " ,
-    "title4":"Our Services",
-    "soustitre4":"Showcase the diverse range of services, programs, and activities offered by the Islamic center.Showcase the diverse range of services, programs, and activities offered by the Islamic center.",
-    "soustitre41" :"Create customized website",
-    "soustitre42" : "Introducing IslamicHub, a cutting-edge platform designed to "
-
-
+    "title2": "Our Story",
+    "soustitre2": "Introducing IslamicHub, a cutting-edge platform designed to revolutionize the way Islamic Centers manage their online presence. Instead of the lengthy and expensive process of setting up individual websites, IslamicHub offers a unique, central platform for these institutions to generate and share their content.",
+    "title3": "We Value",
+    "soustitre31": "Integrity and Transparency",
+    "soustitre32": "At the heart of IslamicHub, we prioritize open communication and ethically responsible actions.",
+    "soustitre33": "Community Engagement",
+    "soustitre34": "We deeply value interaction within our network, listening to and addressing the needs of the community.",
+    "soustitre35": " Innovation and Accessibility",
+    "soustitre36": "IslamicHub strives to blend modern technology with traditions, ensuring constant innovation and accessibility.",
+    "title4": "Our Services",
+    "soustitre4": "IslamicHub provides a holistic solution for Islamic centers. Our landing page showcases centers, events, and testimonials. We've seamlessly integrated contact options, a user-friendly donation portal, and a dedicated section for announcing prayer times. With IslamicHub, managing an online presence becomes efficient and effortless.",
+    "soustitre41": "Create customized website",
+    "soustitre42": "Introducing IslamicHub, a cutting-edge platform designed to "
   },
 
   "LocaleSwitcher": {
