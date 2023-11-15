@@ -5,7 +5,7 @@ import { AboutUs } from "../../../types/types";
 function AboutUsIslmacCenter() {
   const { userInfo } = useAppSelector((state) => state.auth);
   return (
-    <div className="flex flex-col gap-[40px] mx-[100px] py-[64px] border-b-[2px] border-b-secondary-brown-light-active ">
+    <div className="flex flex-col gap-[40px] mx-[100px] pb-[64px] border-b-[2px] border-b-secondary-brown-light-active ">
       <h1 className="text-primary-orange-darker font-sourceSerif  text-[40px] font-normal flex justify-center items-center  ">
         About Us
       </h1>

@@ -41,23 +41,27 @@ function SliderImage() {
 
   return (
     <div className="w-full min-h-[800px] relative">
-      <Slider ref={sliderRef} className="z-30" {...settings}>
-        <div className="h-full w-full">
+      <Slider
+        ref={sliderRef}
+        className="z-30 w-full h-[800px] overflow-hidden"
+        {...settings}
+      >
+        <div>
           <Image
             src="/assets/heroimg.jpg"
             alt="Photo 1"
-            className="w-full"
-            width={1000}
-            height={800}
+            className="w-full h-full object-cover"
+            width={10000}
+            height={8000}
           />
         </div>
-        <div className="h-full w-full">
+        <div>
           <Image
-            src="/assets/heroimg.jpg"
+            src="/assets/heroimg2.png"
             alt="Photo 1"
-            className="w-full"
-            width={1000}
-            height={800}
+            className="w-full h-full object-cover"
+            width={10000}
+            height={8000}
           />
         </div>
       </Slider>

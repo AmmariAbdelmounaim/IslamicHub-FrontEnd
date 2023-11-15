@@ -22,7 +22,6 @@ export const LoginForm = () => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
-  const t = useTranslations("SignIn");
   useEffect(() => {}, [userInfo]);
 
   const initialValues: FormValues = {
@@ -77,7 +76,7 @@ export const LoginForm = () => {
               />
               <CustomField<FormValues>
                 name="password"
-                label={t("password")}
+                label={"password"}
                 placeholder="Enter your password"
                 type="password"
               />

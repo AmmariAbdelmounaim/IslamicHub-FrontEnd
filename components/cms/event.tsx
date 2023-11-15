@@ -35,7 +35,7 @@ export default function Event({
           backgroundColor: backgroundColor,
           borderRightColor: borderColor,
         }}
-        className="p-[10px] min-w-[287px] flex flex-col items-center justify-center bg-secondary-brown-light-hover rounded-tl-[10px] rounded-bl-[10px] border-r-[2px] border-r-primary-orange-normal "
+        className="p-[10px] min-w-[287px] flex flex-col items-center justify-center bg-secondary-brown-light-hover rounded-tl-[6px] rounded-bl-[6px] border-r-[2px] border-r-primary-orange-normal "
       >
         <p className="font-poppins text-[20px] font-semibold capitalize text-secondary-brown-darker">
           {month ? month : "month"}

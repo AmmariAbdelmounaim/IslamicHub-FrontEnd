@@ -135,27 +135,30 @@ function TestimonialSection() {
                               (testimonial: Testimonial, index) => (
                                 <div
                                   key={index}
-                                  className="flex flex-col gap-[40px] "
+                                  className="flex flex-col gap-[40px] items-center"
                                 >
                                   <h3 className="font-poppins capitalize text-[20px] font-semibold text-center">
                                     {`testimonial ${index + 1}`}
                                   </h3>
-                                  <div className="flex justify-center">
+                                  <div className="flex justify-center items-center">
                                     <Slider
                                       name={`testimonials[${index}].image`}
                                       uploidLimit={1}
                                     />
                                   </div>
-                                  <CustomField
-                                    label="testimonial name"
-                                    placeholder="Enter The Name Of The Testimonee"
-                                    name={`testimonials[${index}].userName`}
-                                  />
-                                  <CustomField
-                                    label="testimonial comment"
-                                    placeholder="Your service details"
-                                    name={`testimonials[${index}].comment`}
-                                  />
+                                  <div className="w-[500px] flex items-center justify-center flex-col gap-[40px]">
+                                    <CustomField
+                                      label="testimonial name"
+                                      placeholder="Enter The Name Of The Testimonee"
+                                      name={`testimonials[${index}].userName`}
+                                    />
+                                    <CustomField
+                                      label="testimonial comment"
+                                      placeholder="Your service details"
+                                      name={`testimonials[${index}].comment`}
+                                    />
+                                  </div>
+
                                   <div className="flex items-center justify-center">
                                     <FillButton
                                       additionalStyle="pt-[12px] px-[40px] gap-[10px] w-[300px]"

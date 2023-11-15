@@ -108,15 +108,15 @@ function Slider<T>({
               key={index}
               className="inline-flex rounded-[10px] border-solid border-[1px] border-secondary-brown-normal-30-opacity w-[377px] h-[278px] box-border relative"
             >
-              <div className="flex min-w-0 overflow-hidden">
+              <>
                 <Image
                   src={preview}
                   alt={`Preview ${index}`}
-                  className="block w-auto h-[100%] rounded-[10px] "
-                  width={450}
+                  className="block w-full h-full object-cover rounded-[10px] "
+                  width={550}
                   height={100}
                 />
-              </div>
+              </>
               <button
                 className="absolute top-[-10px] right-[-10px] bg-primary-orange-normal hover:bg-primary-orange-normal-hover text-white rounded-full w-6 h-6 flex justify-center items-center"
                 type="button"

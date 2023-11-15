@@ -48,24 +48,29 @@ const PreviewPage = ({ onClose }: PreviewPageProps) => {
 
         <RaisingF />
         <DonatePage />
-        <div className="flex justify-between mx-[100px] py-[40px] border-b-[2px] border-b-secondary-brown-light-active">
-          <Test
-            image="/assets/testimonials1.jpeg"
-            text="The Saturday Arabic School at Al-Haramain Center has been a wonderful experience for my kids. They are learning Arabic and Islamic values in a fun and engaging way!"
-            title="Aisha Rahman"
-          />
-          <Test
-            image="/assets/testimonials2.jpeg"
-            text="The family counseling services at Al-Barakah Center were truly helpful. The counselors were compassionate and understanding, guiding us towards better family dynamics."
-            title="Ahmed Khan"
-          />
-          <Test
-            image="/assets/testimonials3.jpeg"
-            text="Being part of Al-Ihsan Center's community outreach is rewarding. Seeing the impact of our efforts on people's lives brings joy to my heart."
-            title="Amina Hassan"
-          />
+        <div className="flex flex-col pt-[64px]">
+          <h1 className="text-primary-orange-darker font-sourceSerif text-[40px] font-normal flex justify-center items-center mb-8">
+            Testimonials
+          </h1>
+          <div className="flex justify-between mx-[100px] py-[40px] border-b-[2px] border-b-secondary-brown-light-active">
+            <Test
+              image="/assets/testimonials1.jpeg"
+              text="The Saturday Arabic School at Al-Haramain Center has been a wonderful experience for my kids. They are learning Arabic and Islamic values in a fun and engaging way!"
+              title="Aisha Rahman"
+            />
+            <Test
+              image="/assets/testimonials2.jpeg"
+              text="The family counseling services at Al-Barakah Center were truly helpful. The counselors were compassionate and understanding, guiding us towards better family dynamics."
+              title="Ahmed Khan"
+            />
+            <Test
+              image="/assets/testimonials3.jpeg"
+              text="Being part of Al-Ihsan Center's community outreach is rewarding. Seeing the impact of our efforts on people's lives brings joy to my heart."
+              title="Amina Hassan"
+            />
+          </div>
         </div>
-        <div className="m-[50px] flex justify-center items-center">
+        <div className="mx-[50px] mb-[50px] flex justify-center items-center">
           <PrayerTime />
         </div>
         <GetInTouchh />
