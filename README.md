@@ -16,4 +16,4 @@ Welcome to the CMS repository crafted with a blend of powerful technologies incl
 
 For a comprehensive walkthrough of the CMS features and functionality, check out our video demo:
 
-[![CMS Demo]([http://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg](https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)]([http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID](https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing "CMS Demo")
+[IslamicHub DEMO](https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)
