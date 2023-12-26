@@ -1,34 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ISLAMIC HUB CMS (Front-End)
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+Welcome to the CMS repository crafted with a blend of powerful technologies including NextJS, TailwindCSS, Redux for the front end, and Spring Boot with a MySQL database for the back end. This system provides a robust platform for managing content efficiently and effectively.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **NextJS**: A React framework that enables functionality such as server-side rendering and generating static websites, enhancing performance and SEO.
+- **TailwindCSS**: A utility-first CSS framework for rapidly building custom designs directly in your markup.
+- **Redux**: A predictable state container for JavaScript apps, offering a consistent environment for your app's state.
+- **Spring Boot**: An extension of the Spring framework that simplifies the initial setup and development of new Spring applications.
+- **MySQL**: A robust, scalable, and versatile database management system, ensuring data integrity and optimal performance.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Project Demo
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+For a comprehensive walkthrough of the CMS features and functionality, check out our video demo:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![CMS Demo]([http://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg](https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)]([http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID](https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing)https://drive.google.com/file/d/1DlRrhJiREq0cY2wsSnF269JbyFxXa2VM/view?usp=sharing "CMS Demo")
